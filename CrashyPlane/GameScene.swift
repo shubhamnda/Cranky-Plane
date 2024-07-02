@@ -8,7 +8,7 @@
 import SpriteKit
 import SceneKit
 import GameplayKit
-
+import GoogleMobileAds
 
 enum GameState {
     case showingLogo
@@ -18,6 +18,7 @@ enum GameState {
 }
 class GameScene: SKScene , SKPhysicsContactDelegate{
     
+   
     var instructionPanel: SKSpriteNode!
     var closeButton: SKSpriteNode!
     
@@ -65,7 +66,10 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
     
     
     override func didMove(to view: SKView) {
-        
+      
+    
+
+
         
         
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -5.0)
@@ -488,5 +492,8 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
             
         }
     }
+    
+
+   
 }
 

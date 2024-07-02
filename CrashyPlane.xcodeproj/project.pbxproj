@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68EF2EAAEB783A39A5569475 /* Pods_CrashyPlane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3E55C5393F8E46E0143C0C /* Pods_CrashyPlane.framework */; };
 		9427246B2C22F1D200648F87 /* SettingsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9427246A2C22F1D100648F87 /* SettingsScene.sks */; };
 		9427246D2C22F1E100648F87 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427246C2C22F1E100648F87 /* SettingsScene.swift */; };
 		9427246F2C22F73A00648F87 /* bgMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427246E2C22F73A00648F87 /* bgMusic.swift */; };
@@ -35,9 +36,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		81757FFA953D1D15E4E39288 /* Pods-CrashyPlane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrashyPlane.debug.xcconfig"; path = "Target Support Files/Pods-CrashyPlane/Pods-CrashyPlane.debug.xcconfig"; sourceTree = "<group>"; };
 		9427246A2C22F1D100648F87 /* SettingsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SettingsScene.sks; sourceTree = "<group>"; };
 		9427246C2C22F1E100648F87 /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
 		9427246E2C22F73A00648F87 /* bgMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bgMusic.swift; sourceTree = "<group>"; };
+		943733B02C34364200F266B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9442898D2C1C402A005D4AB2 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		9442898E2C1C402B005D4AB2 /* PlayerExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerExplosion.sks; sourceTree = "<group>"; };
 		9442898F2C1C402C005D4AB2 /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
@@ -61,6 +64,8 @@
 		94E34C362C1AF1C700849CE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94E34C392C1AF1C700849CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94FB08312C22CAEE00CBFFF8 /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
+		B079EB910FE030FA7520C9B6 /* Pods-CrashyPlane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrashyPlane.release.xcconfig"; path = "Target Support Files/Pods-CrashyPlane/Pods-CrashyPlane.release.xcconfig"; sourceTree = "<group>"; };
+		CE3E55C5393F8E46E0143C0C /* Pods_CrashyPlane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrashyPlane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68EF2EAAEB783A39A5569475 /* Pods_CrashyPlane.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,8 @@
 				94E34C412C1B119E00849CE4 /* Content */,
 				94E34C282C1AF1C600849CE4 /* CrashyPlane */,
 				94E34C272C1AF1C600849CE4 /* Products */,
+				A47E1848C7884479B6067131 /* Pods */,
+				97A1D25139106FF38FAB4D53 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +121,7 @@
 				94E34C332C1AF1C600849CE4 /* Main.storyboard */,
 				94E34C362C1AF1C700849CE4 /* Assets.xcassets */,
 				94E34C382C1AF1C700849CE4 /* LaunchScreen.storyboard */,
+				943733B02C34364200F266B8 /* Info.plist */,
 			);
 			path = CrashyPlane;
 			sourceTree = "<group>";
@@ -130,6 +139,23 @@
 			path = Content;
 			sourceTree = "<group>";
 		};
+		97A1D25139106FF38FAB4D53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE3E55C5393F8E46E0143C0C /* Pods_CrashyPlane.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A47E1848C7884479B6067131 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81757FFA953D1D15E4E39288 /* Pods-CrashyPlane.debug.xcconfig */,
+				B079EB910FE030FA7520C9B6 /* Pods-CrashyPlane.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 94E34C3D2C1AF1C700849CE4 /* Build configuration list for PBXNativeTarget "CrashyPlane" */;
 			buildPhases = (
+				4C3D483A399B2D2CDB2A82EB /* [CP] Check Pods Manifest.lock */,
 				94E34C222C1AF1C600849CE4 /* Sources */,
 				94E34C232C1AF1C600849CE4 /* Frameworks */,
 				94E34C242C1AF1C600849CE4 /* Resources */,
+				6EFFD5F948175C42FAF16604 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -208,6 +236,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C3D483A399B2D2CDB2A82EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CrashyPlane-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EFFD5F948175C42FAF16604 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrashyPlane/Pods-CrashyPlane-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrashyPlane/Pods-CrashyPlane-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrashyPlane/Pods-CrashyPlane-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		94E34C222C1AF1C600849CE4 /* Sources */ = {
@@ -369,6 +439,7 @@
 		};
 		94E34C3E2C1AF1C700849CE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81757FFA953D1D15E4E39288 /* Pods-CrashyPlane.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -377,13 +448,14 @@
 				DEVELOPMENT_TEAM = 7DSGM69CYA;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = CrashyPlane/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -402,6 +474,7 @@
 		};
 		94E34C3F2C1AF1C700849CE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B079EB910FE030FA7520C9B6 /* Pods-CrashyPlane.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -410,13 +483,14 @@
 				DEVELOPMENT_TEAM = 7DSGM69CYA;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = CrashyPlane/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

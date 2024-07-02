@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import GoogleMobileAds
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.object(forKey: "isSoundOn") == nil {
                    UserDefaults.standard.set(true, forKey: "isSoundOn")
                }
-//        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }
 

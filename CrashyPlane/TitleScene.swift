@@ -1,6 +1,6 @@
 import SpriteKit
 import GameplayKit
-
+import GoogleMobileAds
 class TitleScene: SKScene {
     var player: SKSpriteNode!
     var playButton: SKSpriteNode!
@@ -15,7 +15,7 @@ class TitleScene: SKScene {
     
     override func didMove(to view: SKView) {
         // Enable user interaction
-        
+     
         if UserDefaults.standard.bool(forKey: "isSoundOn") {
             BackgroundMusic.shared.play()
         }
@@ -71,6 +71,10 @@ class TitleScene: SKScene {
             } else if touchedNode.name == "closeButton" {
                 hideInstructions()
             }
+            else if touchedNode.name == "noAds" {
+                print("fdhf")
+            }
+            
             
         }
     }
@@ -213,6 +217,7 @@ class TitleScene: SKScene {
         ad.size = CGSize(width: 65, height: 65)
         ad.position = CGPoint(x: frame.midX + 50, y: frame.midY - 300)
         ad.zPosition = 34
+        ad.name = "noAds"
         addChild(ad)
     }
     func showInstructions() {
