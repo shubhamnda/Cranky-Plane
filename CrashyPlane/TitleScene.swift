@@ -1,7 +1,9 @@
 import SpriteKit
 import GameplayKit
 import GoogleMobileAds
+
 class TitleScene: SKScene {
+    
     var player: SKSpriteNode!
     var playButton: SKSpriteNode!
     var settingsButton: SKSpriteNode!
@@ -11,11 +13,13 @@ class TitleScene: SKScene {
     var logo: SKSpriteNode!
     var ad: SKSpriteNode!
     var modalBackground: SKShapeNode!
-    
-    
+    var coinNo: Int = 0
+    var coin: SKSpriteNode!
+    var buttonLabel: SKLabelNode!
+    var getMore: SKSpriteNode!
     override func didMove(to view: SKView) {
         // Enable user interaction
-     
+        
         if UserDefaults.standard.bool(forKey: "isSoundOn") {
             BackgroundMusic.shared.play()
         }
@@ -37,10 +41,10 @@ class TitleScene: SKScene {
         createButtons()
         
         infoButton()
-        
-        
-        
+        coinNo = UserDefaults.standard.integer(forKey: "coinNo")
+        coins()
         logoHome()
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,8 +76,13 @@ class TitleScene: SKScene {
                 hideInstructions()
             }
             else if touchedNode.name == "noAds" {
-                print("fdhf")
+                //                show premium
             }
+            else if touchedNode.name == "getMoreCoins" {
+                showRewardedAd()
+                
+            }
+            
             
             
         }
@@ -255,6 +264,61 @@ class TitleScene: SKScene {
         // Remove the modal background and its children
         modalBackground?.removeFromParent()
         modalBackground = nil
+    }
+    func coins(){
+        coin = SKSpriteNode(imageNamed:  "coin")
+        coin.zPosition = 101
+        coin.size = CGSize(width: 60, height: 60)
+        coin.position = CGPoint(x: frame.midX - 140, y: frame.midY + 390)
+        addChild(coin)
+        buttonLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
+        
+        buttonLabel.text = "\(coinNo)"
+        buttonLabel.fontSize = 30
+        buttonLabel.fontColor = SKColor.white
+        
+        buttonLabel.zPosition = 101
+        let labelOffset: CGFloat = 4 // Adjust this offset as needed
+        
+        // Adjust the position to be just to the right of the coin sprite
+        let labelXPosition = coin.position.x + coin.size.width / 3 + labelOffset
+        let labelYPosition = coin.position.y - 10
+        let labelAPosition = coin.position.x - coin.size.width / 3 - labelOffset
+        
+        
+        buttonLabel.position = CGPoint(x: labelXPosition, y: labelYPosition)
+        buttonLabel.horizontalAlignmentMode = .left
+        addChild(buttonLabel)
+        let texture = SKTexture(imageNamed: "plus")
+        getMore = SKSpriteNode(texture: texture)
+        getMore.zPosition = 101
+        getMore.position = CGPoint(x: labelAPosition - 8, y: labelYPosition + 10)
+        getMore.size = CGSize(width: 30, height: 30)
+        getMore.alpha = 0.5
+        getMore.name = "getMoreCoins"
+        addChild(getMore)
+        
+    }
+    
+    
+    
+    
+    func showRewardedAd() {
+        if let rewardedAd = GameManager.shared.rewardedAd {
+            BackgroundMusic.shared.stop()
+            rewardedAd.present(fromRootViewController: self.view?.window?.rootViewController) {
+                BackgroundMusic.shared.play()
+                self.coinNo += 1
+                self.buttonLabel.text = "\(self.coinNo)"
+                // Optionally, you can reload the rewarded ad here
+                UserDefaults.standard.set(self.coinNo, forKey: "coinNo")
+                GameManager.shared.loadRewardedAd()
+                
+            }
+        } else {
+            print("Rewarded ad is not ready")
+            GameManager.shared.loadRewardedAd()  // Reload the ad if it's not ready
+        }
     }
 }
 
