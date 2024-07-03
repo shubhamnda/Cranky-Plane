@@ -17,6 +17,7 @@ class TitleScene: SKScene {
     var coin: SKSpriteNode!
     var buttonLabel: SKLabelNode!
     var getMore: SKSpriteNode!
+    var instructions: SKSpriteNode!
     override func didMove(to view: SKView) {
         // Enable user interaction
         
@@ -179,7 +180,7 @@ class TitleScene: SKScene {
     
     func logoHome() {
         logo = SKSpriteNode(imageNamed: "cranky")
-        logo.position = CGPoint(x: frame.midX, y: frame.midY + 300)
+        logo.position = CGPoint(x: frame.midX, y: frame.midY + 275)
         addChild(logo)
     }
     
@@ -231,11 +232,17 @@ class TitleScene: SKScene {
     }
     func showInstructions() {
         // Create the modal background
-        modalBackground = SKShapeNode(rectOf: CGSize(width: 300, height: 400), cornerRadius: 20)
+        modalBackground = SKShapeNode(rectOf: CGSize(width: 360, height: 360), cornerRadius: 20)
         modalBackground.fillColor = SKColor.black.withAlphaComponent(0.8)
-        modalBackground.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        modalBackground.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2 - 50)
         modalBackground.zPosition = 100
         modalBackground.name = "modalBackground"
+        
+       let texture = SKTexture(imageNamed: "instructions")
+        instructions = SKSpriteNode(texture: texture )
+        instructions.zPosition = 101
+        instructions.size = CGSize(width: 360, height: 360)
+        instructions.position = CGPoint(x: 0, y: 0)
         
         
         
@@ -244,9 +251,9 @@ class TitleScene: SKScene {
         
         
         let closeButton = SKSpriteNode(imageNamed: "close")
-        closeButton.size = CGSize(width: 60, height: 60)
-        closeButton.position = CGPoint(x: 145, y: 200)
-        closeButton.zPosition = 101
+        closeButton.size = CGSize(width: 50, height: 50)
+        closeButton.position = CGPoint(x: 175, y: 180)
+        closeButton.zPosition = 102
         
         closeButton.name = "closeButton"
         
@@ -254,7 +261,7 @@ class TitleScene: SKScene {
         
         
         modalBackground.addChild(closeButton)
-        
+        modalBackground.addChild(instructions)
         
         if let modalBackground = modalBackground {
             self.addChild(modalBackground)
