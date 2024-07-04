@@ -3,7 +3,12 @@ import GameplayKit
 import GoogleMobileAds
 
 class TitleScene: SKScene {
+  
+      
     
+    
+   
+  
     var player: SKSpriteNode!
     var playButton: SKSpriteNode!
     var settingsButton: SKSpriteNode!
@@ -18,6 +23,9 @@ class TitleScene: SKScene {
     var buttonLabel: SKLabelNode!
     var getMore: SKSpriteNode!
     var instructions: SKSpriteNode!
+    let premium = PaymentManager()
+    var premiumLogo: SKSpriteNode!
+    var reset: SKSpriteNode!
     override func didMove(to view: SKView) {
         // Enable user interaction
         
@@ -39,12 +47,19 @@ class TitleScene: SKScene {
             createPlayer(characterName: selectedCharacterName)
         }
         
+            resetButton()
+        
         createButtons()
         
         infoButton()
         coinNo = UserDefaults.standard.integer(forKey: "coinNo")
         coins()
         logoHome()
+        let isPremiumUser = UserDefaults.standard.bool(forKey: "isPremiumUser")
+            if isPremiumUser {
+                updatePremiumUI()
+            }
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePremiumPurchase), name: NSNotification.Name("PremiumPurchased"), object: nil)
         
     }
     
@@ -76,9 +91,29 @@ class TitleScene: SKScene {
             } else if touchedNode.name == "closeButton" {
                 hideInstructions()
             }
-            else if touchedNode.name == "noAds" {
-                //                show premium
+            else if touchedNode.name == "reset" {
+                print("user is now reset")
+                UserDefaults.standard.set(false, forKey: "isPremiumUser")
+                updatePremiumUI()
             }
+            else if touchedNode.name == "noAds" {
+                
+                premium.buyPremium { success in
+                                   if success {print("bought")
+                                              UserDefaults.standard.set(true, forKey: "isPremiumUser")
+                                      
+               
+                                          } else {
+                                              print("nooo!!")
+                                              UserDefaults.standard.set(false, forKey: "isPremiumUser")
+                                              
+               
+                                       }
+               
+                               }
+            }
+//
+            
             else if touchedNode.name == "getMoreCoins" {
                 showRewardedAd()
                 
@@ -216,6 +251,7 @@ class TitleScene: SKScene {
             self.view?.presentScene(scene, transition: transition)
         }
     }
+       
     func infoButton(){
         info = SKSpriteNode(imageNamed: "info")
         info.size = CGSize(width: 70, height: 70)
@@ -238,7 +274,7 @@ class TitleScene: SKScene {
         modalBackground.zPosition = 100
         modalBackground.name = "modalBackground"
         
-       let texture = SKTexture(imageNamed: "instructions")
+        let texture = SKTexture(imageNamed: "instructions")
         instructions = SKSpriteNode(texture: texture )
         instructions.zPosition = 101
         instructions.size = CGSize(width: 360, height: 360)
@@ -304,6 +340,14 @@ class TitleScene: SKScene {
         getMore.alpha = 0.5
         getMore.name = "getMoreCoins"
         addChild(getMore)
+        let premiumTexture = SKTexture(imageNamed: "premium")
+        premiumLogo = SKSpriteNode(texture: premiumTexture)
+       premiumLogo.zPosition = 101
+        premiumLogo.position = CGPoint(x: frame.midX + 120, y: labelYPosition + 10)
+        premiumLogo.size = CGSize(width: 50, height: 50)
+        premiumLogo.isHidden = true
+       
+        addChild(premiumLogo)
         
     }
     
@@ -327,6 +371,34 @@ class TitleScene: SKScene {
             GameManager.shared.loadRewardedAd()  // Reload the ad if it's not ready
         }
     }
+    @objc func handlePremiumPurchase() {
+        let isPremiumUser = UserDefaults.standard.bool(forKey: "isPremiumUser")
+        if  (isPremiumUser == true ){
+            updatePremiumUI()
+        }
+    }
+    func updatePremiumUI() {
+        
+          
+            premiumLogo.isHidden = false
+            coin.removeFromParent()
+            buttonLabel.removeFromParent()
+            getMore.removeFromParent()
+            ad.removeFromParent()
+            info.position = CGPoint(x: frame.midX, y: frame.midY - 300)
+      
+        
+        }
+    func resetButton(){
+        reset = SKSpriteNode(imageNamed: "blue_button04 1")
+        reset.size = CGSize(width: 70, height: 70)
+        reset.size = CGSize(width: 60, height: 30)
+        reset.position = CGPoint(x: frame.midX + 140, y: frame.midY - 300)
+        reset.zPosition = 34
+        reset.name = "reset"
+        addChild(reset)
+    }
+   
 }
 
 

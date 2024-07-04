@@ -20,6 +20,7 @@
 		9446943C2C33E9A3003CEF2A /* ScoresScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9446943B2C33E9A3003CEF2A /* ScoresScene.sks */; };
 		9446943E2C33E9BA003CEF2A /* ScoresScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446943D2C33E9BA003CEF2A /* ScoresScene.swift */; };
 		9455AC982C22C5B1008373E2 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9455AC972C22C5B1008373E2 /* TitleScene.sks */; };
+		94665E592C36A3760075297C /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94665E582C36A3760075297C /* PaymentManager.swift */; };
 		9472953D2C314DFC000511B6 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9472953C2C314DFC000511B6 /* GameOverScene.sks */; };
 		9472953F2C314E0D000511B6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472953E2C314E0D000511B6 /* GameOverScene.swift */; };
 		948210BD2C285909000744A5 /* CharactersScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 948210BC2C285908000744A5 /* CharactersScene.sks */; };
@@ -51,6 +52,8 @@
 		9446943B2C33E9A3003CEF2A /* ScoresScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoresScene.sks; sourceTree = "<group>"; };
 		9446943D2C33E9BA003CEF2A /* ScoresScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresScene.swift; sourceTree = "<group>"; };
 		9455AC972C22C5B1008373E2 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
+		94665E572C36A28B0075297C /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		94665E582C36A3760075297C /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
 		9472953C2C314DFC000511B6 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		9472953E2C314E0D000511B6 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		948210BC2C285908000744A5 /* CharactersScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CharactersScene.sks; sourceTree = "<group>"; };
@@ -121,10 +124,12 @@
 				94E34C312C1AF1C600849CE4 /* GameViewController.swift */,
 				9472953E2C314E0D000511B6 /* GameOverScene.swift */,
 				949E0C452C350B6300A37E58 /* GameManager.swift */,
+				94665E582C36A3760075297C /* PaymentManager.swift */,
 				94E34C332C1AF1C600849CE4 /* Main.storyboard */,
 				94E34C362C1AF1C700849CE4 /* Assets.xcassets */,
 				94E34C382C1AF1C700849CE4 /* LaunchScreen.storyboard */,
 				943733B02C34364200F266B8 /* Info.plist */,
+				94665E572C36A28B0075297C /* Configuration.storekit */,
 			);
 			path = CrashyPlane;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			files = (
 				948210BF2C285919000744A5 /* CharactersScene.swift in Sources */,
 				9427246F2C22F73A00648F87 /* bgMusic.swift in Sources */,
+				94665E592C36A3760075297C /* PaymentManager.swift in Sources */,
 				9472953F2C314E0D000511B6 /* GameOverScene.swift in Sources */,
 				94E34C302C1AF1C600849CE4 /* GameScene.swift in Sources */,
 				94E34C322C1AF1C600849CE4 /* GameViewController.swift in Sources */,
@@ -453,6 +459,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrashyPlane/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Clanky;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -488,6 +495,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrashyPlane/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Clanky;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

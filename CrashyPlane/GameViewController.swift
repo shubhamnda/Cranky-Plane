@@ -20,16 +20,21 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
-        let adaptiveSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
-        bannerView = GADBannerView(adSize: adaptiveSize)
         
-        addBannerViewToView(bannerView)
-        
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174"
-        bannerView.rootViewController = self
-        
-        bannerView.load(GADRequest())
+        NotificationCenter.default.addObserver(self, selector: #selector(removeBannerView), name: NSNotification.Name("PremiumPurchased"), object: nil)
+        if !UserDefaults.standard.bool(forKey: "isPremiumUser"){
+          
+            print("\(UserDefaults.standard.bool(forKey: "isPremiumUser"))")
+            let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
+            let adaptiveSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+            bannerView = GADBannerView(adSize: adaptiveSize)
+            
+            addBannerViewToView(bannerView)
+            
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174"
+            bannerView.rootViewController = self
+            
+            bannerView.load(GADRequest())}
         
         
         if let view = self.view as! SKView? {
@@ -86,5 +91,7 @@ class GameViewController: UIViewController {
             ])
     }
     
-    
+    @objc func removeBannerView() {
+           bannerView?.removeFromSuperview()
+       }
 }
