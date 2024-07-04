@@ -15,18 +15,24 @@ class SettingsScene: SKScene {
     let rightButton = SKLabelNode(fontNamed: "Arial-BoldMT")
     let leftButton = SKLabelNode(fontNamed: "Arial-BoldMT")
     let imageNumberLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
-    let images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7" ] // Replace with your image names
+    var isPremiumUser: Bool = UserDefaults.standard.bool(forKey: "isPremiumUser")
+    
+   var images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7" ]
     var currentImageIndex = 0
     var score : SKSpriteNode!
     var returnButton: SKSpriteNode!
     var player: SKSpriteNode!
     var soundToggleButton: SKSpriteNode!
     var soundToggleLabel: SKLabelNode!
-    
+   
     var isSoundOn: Bool = UserDefaults.standard.bool(forKey: "isSoundOn")
     
     override func didMove(to view: SKView) {
-        
+//        if isPremiumUser {
+//            images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7" ]
+//        } else{
+//          images =   ["airadventurelevel1", "airadventurelevel2" ]
+//        }
         
         setupUI()
         logo()
@@ -103,6 +109,8 @@ class SettingsScene: SKScene {
             else if touchedNode.name == "soundToggleButton" {
                 toggleSound()
             }
+           
+            
         }
     }
     
@@ -231,7 +239,7 @@ class SettingsScene: SKScene {
     func updateImage() {
         let imageName = images[currentImageIndex]
         let texture = SKTexture(imageNamed: imageName)
-        UserDefaults.standard.set(imageName, forKey: "selectedBackground")
+        
         imageView.texture = texture
         
         
@@ -257,10 +265,39 @@ class SettingsScene: SKScene {
             // Portrait image
             newWidth = newHeight * aspectRatio
         }
-        
+      
         // Ensure the image fits within the defined rectangle
         imageView.size = CGSize(width: newWidth, height: newHeight)
         imageNumberLabel.text = "\(currentImageIndex + 1) / \(images.count)"
+       
+        if currentImageIndex >= 2 && !isPremiumUser {
+            imageView.enumerateChildNodes(withName: "lockedImage") { node, _ in
+                       node.removeFromParent()
+                   }
+                // Create a locked image overlay or indicator
+                let lockedImage = SKSpriteNode(imageNamed: "locked_image")
+                lockedImage.position = CGPoint(x: 0, y: 0)
+                lockedImage.zPosition = imageView.zPosition + 1
+            lockedImage.name = "lockedImage"
+          lockedImage.size = CGSize(width: 60, height: 60)
+                imageView.addChild(lockedImage)
+           
+            skyChangeButton.isUserInteractionEnabled = true
+                    skyChangeButton.alpha = 0.5
+            UserDefaults.standard.removeObject(forKey: "selectedBackground")
+          
+            }
+        else {
+                // Remove the locked image if the image is unlocked or user is premium
+                imageView.enumerateChildNodes(withName: "lockedImage") { node, _ in
+                    node.removeFromParent()
+                    
+                }
+            skyChangeButton.isUserInteractionEnabled = false
+            skyChangeButton.alpha = 1
+            UserDefaults.standard.set(imageName, forKey: "selectedBackground")
+            }
+       
     }
     
     
@@ -269,22 +306,23 @@ class SettingsScene: SKScene {
         
         enumerateChildNodes(withName: "skyNode") { node, _ in
             node.removeFromParent()}
+        if currentImageIndex < 2 || isPremiumUser{
         let nSkyTexture = SKTexture(imageNamed: images[currentImageIndex])
         nSkyTexture.filteringMode = .linear
-        for i in 0 ... 1 {
-            let sky = SKSpriteNode(texture: nSkyTexture)
-            sky.zPosition = -35
-            sky.anchorPoint = CGPoint.zero
-            sky.size.height = frame.height
-            sky.position = CGPoint(x: CGFloat(i) * nSkyTexture.size().width, y: 0)
-            let moveLeft = SKAction.moveBy(x: -nSkyTexture.size().width, y: 0, duration: 20)
-            let moveReset = SKAction.moveBy(x: nSkyTexture.size().width, y: 0, duration: 0)
-            let moveLoop = SKAction.sequence([moveLeft, moveReset])
-            let moveForever = SKAction.repeatForever(moveLoop)
-            sky.name = "skyNode"
-            sky.run(moveForever)
-            
-            addChild(sky)
+            for i in 0 ... 1 {
+                let sky = SKSpriteNode(texture: nSkyTexture)
+                sky.zPosition = -35
+                sky.anchorPoint = CGPoint.zero
+                sky.size.height = frame.height
+                sky.position = CGPoint(x: CGFloat(i) * nSkyTexture.size().width, y: 0)
+                let moveLeft = SKAction.moveBy(x: -nSkyTexture.size().width, y: 0, duration: 20)
+                let moveReset = SKAction.moveBy(x: nSkyTexture.size().width, y: 0, duration: 0)
+                let moveLoop = SKAction.sequence([moveLeft, moveReset])
+                let moveForever = SKAction.repeatForever(moveLoop)
+                sky.name = "skyNode"
+                sky.run(moveForever)
+                
+                addChild(sky)}
         }
         
     }
@@ -292,6 +330,7 @@ class SettingsScene: SKScene {
         score = SKSpriteNode(imageNamed: "score")
         score.position = CGPoint(x: frame.midX, y: frame.midY - 20)
         score.zPosition = 12
+        score.name = "bg"
         score.size = CGSize(width: 360, height: 600)
         addChild(score)}
 }
