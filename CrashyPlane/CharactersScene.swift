@@ -26,10 +26,10 @@ class CharactersScene: SKScene {
         createReturnButton()
         characterView(characterName: "planeRed", position: CGPoint(x: frame.midX - 80, y: frame.midY + 190), nodeName: "planeRed")
         characterView(characterName: "planeGreen", position: CGPoint(x: frame.midX + 80, y: frame.midY + 190), nodeName: "planeGreen")
-        characterView(characterName: "bat", position: CGPoint(x: frame.midX - 80, y: frame.midY + 20), nodeName: "bat")
-        characterView(characterName: "bird", position: CGPoint(x: frame.midX + 80, y: frame.midY + 20), nodeName: "bird")
-        characterView(characterName: "dragon", position: CGPoint(x: frame.midX - 80, y: frame.midY - 140), nodeName: "dragon")
-        characterView(characterName: "skeleton", position: CGPoint(x: frame.midX + 80, y: frame.midY - 140), nodeName: "skeleton")
+        characterView(characterName: "bat", position: CGPoint(x: frame.midX - 80, y: frame.midY + 20), nodeName: "bat",isLocked: true)
+        characterView(characterName: "bird", position: CGPoint(x: frame.midX + 80, y: frame.midY + 20), nodeName: "bird",isLocked: true)
+        characterView(characterName: "dragon", position: CGPoint(x: frame.midX - 80, y: frame.midY - 140), nodeName: "dragon",isLocked: true)
+        characterView(characterName: "skeleton", position: CGPoint(x: frame.midX + 80, y: frame.midY - 140), nodeName: "skeleton",isLocked: true)
         
         
         let buttonLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
@@ -53,6 +53,9 @@ class CharactersScene: SKScene {
                 showHighlight(at: selectedNode.position)
             }
         }
+        if UserDefaults.standard.string(forKey: "selectedCharacter") == nil || !isPremiumUser() {
+            UserDefaults.standard.set("planeRed", forKey: "selectedCharacter")
+        }
     }
     
     
@@ -71,8 +74,13 @@ class CharactersScene: SKScene {
                         showHighlight(at: redPlaneNode.position)
                     }
                 } else {
-                    showHighlight(at: touchedNode.position)
-                    UserDefaults.standard.set(nodeName, forKey: "selectedCharacter")
+                    if isCharacterLocked(nodeName) && !isPremiumUser() {
+                                          
+                                           print("Character \(nodeName) is locked. Please purchase premium to unlock.")
+                                       } else {
+                                           showHighlight(at: touchedNode.position)
+                                           UserDefaults.standard.set(nodeName, forKey: "selectedCharacter")
+                                       }
                 }
             }
             if returnButton.contains(location) {
@@ -120,7 +128,7 @@ class CharactersScene: SKScene {
             self.view?.presentScene(titleScene, transition: transition)
         }
     }
-    func characterView(characterName: String, position: CGPoint, nodeName: String){
+    func characterView(characterName: String, position: CGPoint, nodeName: String, isLocked:Bool = false){
         let rectWidth: CGFloat = 100
         let rectHeight: CGFloat = 100
         let characterTexture = SKTexture(imageNamed: characterName)
@@ -137,6 +145,15 @@ class CharactersScene: SKScene {
         let runForever = SKAction.repeatForever(animation)
         
         imageView.run(runForever)
+        if isLocked && !isPremiumUser() {
+                    let lockOverlay = SKSpriteNode(imageNamed: "locked_image")
+                    lockOverlay.size = CGSize(width: rectWidth, height: rectHeight)
+                    lockOverlay.position = CGPoint(x: 0, y: 0)
+                    lockOverlay.zPosition = 40
+           
+            lockOverlay.size = CGSize(width: 60, height: 60)
+                    imageView.addChild(lockOverlay)
+                }
         addChild(imageView)
     }
     
@@ -150,5 +167,14 @@ class CharactersScene: SKScene {
         score.zPosition = 11
         score.size = CGSize(width: 360, height: 600)
         addChild(score)}
+    func isPremiumUser() -> Bool {
+            return UserDefaults.standard.bool(forKey: "isPremiumUser")
+        }
+        
+        func isCharacterLocked(_ characterName: String) -> Bool {
+            let lockedCharacters = ["bat", "bird", "dragon", "skeleton"]
+            return lockedCharacters.contains(characterName)
+        }
+    
 }
 

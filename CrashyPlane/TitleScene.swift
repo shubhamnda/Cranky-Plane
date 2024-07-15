@@ -1,7 +1,7 @@
 import SpriteKit
 import GameplayKit
 import GoogleMobileAds
-
+import SAConfettiView
 class TitleScene: SKScene {
   
       
@@ -26,6 +26,8 @@ class TitleScene: SKScene {
     let premium = PaymentManager()
     var premiumLogo: SKSpriteNode!
     var reset: SKSpriteNode!
+    var confettiShown = UserDefaults.standard.bool(forKey: "confettiShown")
+    var confettiView: SAConfettiView?
     override func didMove(to view: SKView) {
         // Enable user interaction
         
@@ -43,15 +45,24 @@ class TitleScene: SKScene {
         if UserDefaults.standard.string(forKey: "selectedCharacter") == nil {
             UserDefaults.standard.set("planeRed", forKey: "selectedCharacter")
         }
+        
         if let selectedCharacterName = UserDefaults.standard.string(forKey: "selectedCharacter") {
             createPlayer(characterName: selectedCharacterName)
         }
+        confettiView = SAConfettiView(frame: view.bounds)
+               confettiView?.intensity = 0.5
+        confettiView?.type = .Confetti // Choose the type you prefer
+
+               if let confettiView = confettiView {
+                   view.addSubview(confettiView)
+               }
         
             resetButton()
         
         createButtons()
         
         infoButton()
+        
         coinNo = UserDefaults.standard.integer(forKey: "coinNo")
         coins()
         logoHome()
@@ -60,7 +71,7 @@ class TitleScene: SKScene {
                 updatePremiumUI()
             }
         NotificationCenter.default.addObserver(self, selector: #selector(handlePremiumPurchase), name: NSNotification.Name("PremiumPurchased"), object: nil)
-        
+      
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -92,25 +103,15 @@ class TitleScene: SKScene {
                 hideInstructions()
             }
             else if touchedNode.name == "reset" {
+               
                 print("user is now reset")
                 UserDefaults.standard.set(false, forKey: "isPremiumUser")
+                UserDefaults.standard.setValue(false, forKey: "confettiShown")
                 updatePremiumUI()
             }
             else if touchedNode.name == "noAds" {
-                
-                premium.buyPremium { success in
-                                   if success {print("bought")
-                                              UserDefaults.standard.set(true, forKey: "isPremiumUser")
-                                      
-               
-                                          } else {
-                                              print("nooo!!")
-                                              UserDefaults.standard.set(false, forKey: "isPremiumUser")
-                                              
-               
-                                       }
-               
-                               }
+                loadPremuimScene()
+//                
             }
 //
             
@@ -124,10 +125,7 @@ class TitleScene: SKScene {
         }
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
-    }
+
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -147,7 +145,7 @@ class TitleScene: SKScene {
         }
         
     }
-    
+   
     func createPlayer(characterName: String) {
         let playerTexture = SKTexture(imageNamed: characterName)
         player = SKSpriteNode(texture: playerTexture)
@@ -230,6 +228,14 @@ class TitleScene: SKScene {
     func loadSettingsScene() {
         
         if let scene = SettingsScene(fileNamed: "SettingsScene") {
+            scene.scaleMode = .resizeFill
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(scene, transition: transition)
+        }
+    }
+    func loadPremuimScene() {
+        
+        if let scene = PremiumScene(fileNamed: "PremiumScene") {
             scene.scaleMode = .resizeFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(scene, transition: transition)
@@ -378,15 +384,27 @@ class TitleScene: SKScene {
         }
     }
     func updatePremiumUI() {
-        
-          
+       
+       
             premiumLogo.isHidden = false
             coin.removeFromParent()
             buttonLabel.removeFromParent()
             getMore.removeFromParent()
             ad.removeFromParent()
             info.position = CGPoint(x: frame.midX, y: frame.midY - 300)
-      
+        if !confettiShown {
+            UserDefaults.standard.setValue(true, forKey: "confettiShown")
+            
+             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                 
+                 self?.confettiView?.startConfetti()
+                 
+             }
+             DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) { [weak self] in
+                 self?.confettiView?.stopConfetti()
+                 self?.confettiView?.removeFromSuperview()
+             }
+         }
         
         }
     func resetButton(){
@@ -398,7 +416,7 @@ class TitleScene: SKScene {
         reset.name = "reset"
         addChild(reset)
     }
-   
+  
 }
 
 

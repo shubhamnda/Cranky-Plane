@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FEA3B3A570634836C0457F3D7CEF1699"
-               BuildableName = "Google_Mobile_Ads_SDK.framework"
-               BlueprintName = "Google-Mobile-Ads-SDK"
+               BlueprintIdentifier = "1E488B4A8341D4A1374B44B7D0191BC4"
+               BuildableName = "SAConfettiView.bundle"
+               BlueprintName = "SAConfettiView-SAConfettiView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -14,7 +14,7 @@ class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObs
     
  
     private var purchaseCompletion: ((Bool) -> Void)?
-  
+
     
     enum Product: String, CaseIterable {
         case   nonAdsPremium = "co.shubhamnanda.premium"
@@ -44,6 +44,9 @@ class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObs
                 NotificationCenter.default.post(name: NSNotification.Name("PremiumPurchased"), object: nil)
                 purchaseCompletion?(true)
                purchaseCompletion = nil
+               
+               
+                      
                
                 
             case .failed:

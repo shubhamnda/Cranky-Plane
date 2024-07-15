@@ -2,19 +2,23 @@ PODS:
   - Google-Mobile-Ads-SDK (11.6.0):
     - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleUserMessagingPlatform (2.5.0)
+  - SAConfettiView (0.1.8)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK
+  - SAConfettiView
 
 SPEC REPOS:
   trunk:
     - Google-Mobile-Ads-SDK
     - GoogleUserMessagingPlatform
+    - SAConfettiView
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 28339250757645a9bab066ebbe667fa48d2c9bd7
   GoogleUserMessagingPlatform: 6b4f48a370e77ce121d034c908cc6ee4fdafaf13
+  SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
 
-PODFILE CHECKSUM: db3012f2d936b1d539222a90896d7a62f1f87d5d
+PODFILE CHECKSUM: 40aa12de5f6c1fa689bb3296250622c190e8428a
 
 COCOAPODS: 1.15.2
