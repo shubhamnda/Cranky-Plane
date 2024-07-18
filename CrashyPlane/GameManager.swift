@@ -16,7 +16,7 @@ class GameManager {
     }
     
     func loadRewardedAd() {
-        GADRewardedAd.load(withAdUnitID: "ca-app-pub-3940256099942544/1712485313",
+        GADRewardedAd.load(withAdUnitID: "ca-app-pub-4131085170810437/5356673694",
                            request: GADRequest()) { [weak self] ad, error in
             if let error = error {
                 print("Failed to load rewarded ad with error: \(error.localizedDescription)")

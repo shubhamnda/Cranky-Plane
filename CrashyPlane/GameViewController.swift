@@ -31,7 +31,7 @@ class GameViewController: UIViewController {
             
             addBannerViewToView(bannerView)
             
-            bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174"
+            bannerView.adUnitID = "ca-app-pub-4131085170810437/1584949641"
             bannerView.rootViewController = self
             
             bannerView.load(GADRequest())}
@@ -73,6 +73,10 @@ class GameViewController: UIViewController {
     func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
+        NSLayoutConstraint.activate([
+                   bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                   bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+               ])
         view.addConstraints(
             [NSLayoutConstraint(item: bannerView,
                                 attribute: .bottom,

@@ -38,11 +38,16 @@ class PremiumScene: SKScene {
         backgroundNode.zPosition = -1
         
         premiumLogo = SKSpriteNode(imageNamed: "premium")
-        premiumLogo.position = CGPoint(x: frame.midX - 180, y: frame.midY + 80)
+        premiumLogo.size = CGSize(width: frame.size.width * 0.11, height: frame.size.width * 0.11)
+        premiumLogo.position = CGPoint(x: frame.midX - 180, y: frame.midY + 70)
         
         closeLogo = SKSpriteNode(imageNamed: "close")
-       closeLogo.position = CGPoint(x: frame.midX - 20, y: frame.midY + 140)
-        closeLogo.size = CGSize(width: 60, height: 60)
+//       closeLogo.position = CGPoint(x: frame.midX - 20 , y: frame.midY + 140)
+
+        closeLogo.position = CGPoint(x: frame.midX - 0.05 * frame.size.width, y: frame.midY + 0.08 * frame.size.height)
+        closeLogo.size =  CGSize(width: frame.size.width * 0.08, height: frame.size.width * 0.08)
+  
+        
         closeLogo.name = "close"
         addChild(closeLogo)
         addChild(premiumLogo)

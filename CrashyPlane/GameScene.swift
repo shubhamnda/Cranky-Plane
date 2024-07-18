@@ -173,6 +173,8 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
     
     func createLogos() {
         logo = SKSpriteNode(imageNamed: "cranky")
+        logo.size = CGSize(width: frame.size.width * 1.3, height: frame.size.width * 1.3)
+
         logo.position = CGPoint(x: frame.midX, y: frame.midY+60)
         addChild(logo)
         

@@ -112,10 +112,10 @@ class GameOverScene: SKScene {
         }
     }
     func showMedal(){
-        if YourScore > 4  {
+        if YourScore > 400  {
             medal(name: "medalGold")
         }
-        else if YourScore > 2 && YourScore <= 4 {
+        else if YourScore > 200 && YourScore <= 400 {
             medal(name: "medalSilver")
         }
         else {

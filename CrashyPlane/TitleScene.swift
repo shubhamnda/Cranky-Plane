@@ -57,7 +57,7 @@ class TitleScene: SKScene {
                    view.addSubview(confettiView)
                }
         
-            resetButton()
+//            resetButton()
         
         createButtons()
         
@@ -102,13 +102,13 @@ class TitleScene: SKScene {
             } else if touchedNode.name == "closeButton" {
                 hideInstructions()
             }
-            else if touchedNode.name == "reset" {
-               
-                print("user is now reset")
-                UserDefaults.standard.set(false, forKey: "isPremiumUser")
-                UserDefaults.standard.setValue(false, forKey: "confettiShown")
-                updatePremiumUI()
-            }
+//            else if touchedNode.name == "reset" {
+//               
+//                print("user is now reset")
+//                UserDefaults.standard.set(false, forKey: "isPremiumUser")
+//                UserDefaults.standard.setValue(false, forKey: "confettiShown")
+//                updatePremiumUI()
+//            }
             else if touchedNode.name == "noAds" {
                 loadPremuimScene()
 //                
@@ -154,7 +154,7 @@ class TitleScene: SKScene {
         player.physicsBody = SKPhysicsBody(texture: playerTexture, size: playerTexture.size())
         player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
         player.physicsBody?.isDynamic = false
-        player.size = CGSize(width: 90 , height:90)
+        player.size = CGSize(width: frame.size.width * 0.23, height: frame.size.width * 0.23)
         player.physicsBody?.collisionBitMask = 0
         addChild(player)
         
@@ -190,6 +190,7 @@ class TitleScene: SKScene {
         let menu = SKSpriteNode(texture: menuTexture)
         menu.zPosition = 30
         menu.position = position
+        menu.size =  CGSize(width: frame.size.width * 0.42, height: frame.size.width * 0.13)
         menu.name = category // Assign the category as the name for identification
         addChild(menu)
         
@@ -213,7 +214,8 @@ class TitleScene: SKScene {
     
     func logoHome() {
         logo = SKSpriteNode(imageNamed: "cranky")
-        logo.position = CGPoint(x: frame.midX, y: frame.midY + 275)
+        logo.size = CGSize(width: frame.size.width * 1.3, height: frame.size.width * 1.3)
+        logo.position = CGPoint(x: frame.midX, y: frame.midY + 280)
         addChild(logo)
     }
     
@@ -260,31 +262,32 @@ class TitleScene: SKScene {
        
     func infoButton(){
         info = SKSpriteNode(imageNamed: "info")
-        info.size = CGSize(width: 70, height: 70)
-        info.position = CGPoint(x: frame.midX - 50, y: frame.midY - 300)
+        info.size = CGSize(width: frame.size.width * 0.2, height: frame.size.width * 0.2)
+        info.position = CGPoint(x: frame.midX - 50, y: frame.midY - 280)
         info.zPosition = 34
         info.name = "about"
         addChild(info)
         ad = SKSpriteNode(imageNamed: "NoAds")
-        ad.size = CGSize(width: 65, height: 65)
-        ad.position = CGPoint(x: frame.midX + 50, y: frame.midY - 300)
+        ad.size = CGSize(width: frame.size.width * 0.18, height: frame.size.width * 0.18)
+        ad.position = CGPoint(x: frame.midX + 50, y: frame.midY - 280)
         ad.zPosition = 34
         ad.name = "noAds"
         addChild(ad)
     }
     func showInstructions() {
         // Create the modal background
-        modalBackground = SKShapeNode(rectOf: CGSize(width: 360, height: 360), cornerRadius: 20)
+        modalBackground = SKShapeNode(rectOf: CGSize(width: frame.size.width * 3, height: frame.size.width * 3), cornerRadius: 20)
         modalBackground.fillColor = SKColor.black.withAlphaComponent(0.8)
         modalBackground.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2 - 50)
-        modalBackground.zPosition = 100
+        modalBackground.zPosition = 102
         modalBackground.name = "modalBackground"
         
         let texture = SKTexture(imageNamed: "instructions")
         instructions = SKSpriteNode(texture: texture )
-        instructions.zPosition = 101
+        instructions.zPosition = 102
         instructions.size = CGSize(width: 360, height: 360)
         instructions.position = CGPoint(x: 0, y: 0)
+      
         
         
         
@@ -293,9 +296,9 @@ class TitleScene: SKScene {
         
         
         let closeButton = SKSpriteNode(imageNamed: "close")
-        closeButton.size = CGSize(width: 50, height: 50)
+        closeButton.size = CGSize(width: frame.size.width * 0.1, height: frame.size.width * 0.1)
         closeButton.position = CGPoint(x: 175, y: 180)
-        closeButton.zPosition = 102
+        closeButton.zPosition = 103
         
         closeButton.name = "closeButton"
         
@@ -317,13 +320,13 @@ class TitleScene: SKScene {
     func coins(){
         coin = SKSpriteNode(imageNamed:  "coin")
         coin.zPosition = 101
-        coin.size = CGSize(width: 60, height: 60)
-        coin.position = CGPoint(x: frame.midX - 140, y: frame.midY + 390)
+        coin.size = CGSize(width: frame.size.width * 0.12, height: frame.size.width * 0.12)
+        coin.position = CGPoint(x: frame.maxX - 0.14 * frame.size.width, y: frame.maxY - 0.04 * frame.size.height)
         addChild(coin)
         buttonLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
         
         buttonLabel.text = "\(coinNo)"
-        buttonLabel.fontSize = 30
+        buttonLabel.fontSize = 0.07 * frame.size.width
         buttonLabel.fontColor = SKColor.white
         
         buttonLabel.zPosition = 101
@@ -342,15 +345,15 @@ class TitleScene: SKScene {
         getMore = SKSpriteNode(texture: texture)
         getMore.zPosition = 101
         getMore.position = CGPoint(x: labelAPosition - 8, y: labelYPosition + 10)
-        getMore.size = CGSize(width: 30, height: 30)
+        getMore.size = CGSize(width: 0.08 * frame.size.width, height: 0.08 * frame.size.width) // Adjust size proportionally
         getMore.alpha = 0.5
         getMore.name = "getMoreCoins"
         addChild(getMore)
         let premiumTexture = SKTexture(imageNamed: "premium")
         premiumLogo = SKSpriteNode(texture: premiumTexture)
        premiumLogo.zPosition = 101
-        premiumLogo.position = CGPoint(x: frame.midX + 120, y: labelYPosition + 10)
-        premiumLogo.size = CGSize(width: 50, height: 50)
+        premiumLogo.position = CGPoint(x: frame.midX + 130, y: labelYPosition + 10)
+        premiumLogo.size = CGSize(width: 0.12 * frame.size.width, height: 0.12 * frame.size.width) // Adjust size proportionallyr
         premiumLogo.isHidden = true
        
         addChild(premiumLogo)
@@ -407,15 +410,15 @@ class TitleScene: SKScene {
          }
         
         }
-    func resetButton(){
-        reset = SKSpriteNode(imageNamed: "blue_button04 1")
-        reset.size = CGSize(width: 70, height: 70)
-        reset.size = CGSize(width: 60, height: 30)
-        reset.position = CGPoint(x: frame.midX + 140, y: frame.midY - 300)
-        reset.zPosition = 34
-        reset.name = "reset"
-        addChild(reset)
-    }
+//    func resetButton(){
+//        reset = SKSpriteNode(imageNamed: "blue_button04 1")
+//        reset.size = CGSize(width: 70, height: 70)
+//        reset.size = CGSize(width: 60, height: 30)
+//        reset.position = CGPoint(x: frame.midX + 140, y: frame.midY - 300)
+//        reset.zPosition = 34
+//        reset.name = "reset"
+//        addChild(reset)
+//    }
   
 }
 

@@ -26,7 +26,7 @@
 		948210BD2C285909000744A5 /* CharactersScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 948210BC2C285908000744A5 /* CharactersScene.sks */; };
 		948210BF2C285919000744A5 /* CharactersScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948210BE2C285919000744A5 /* CharactersScene.swift */; };
 		949E0C462C350B6300A37E58 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949E0C452C350B6300A37E58 /* GameManager.swift */; };
-		94B8BCD22C3D013100C8B26A /* PremiumScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 94B8BCD12C3D013100C8B26A /* PremiumScene.sks */; };
+		94AE4F362C48EC2000557059 /* PremiumScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 94AE4F352C48EC2000557059 /* PremiumScene.sks */; };
 		94B8BCD42C3D015700C8B26A /* PremiumScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8BCD32C3D015700C8B26A /* PremiumScene.swift */; };
 		94E34C2A2C1AF1C600849CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E34C292C1AF1C600849CE4 /* AppDelegate.swift */; };
 		94E34C2C2C1AF1C600849CE4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 94E34C2B2C1AF1C600849CE4 /* GameScene.sks */; };
@@ -61,7 +61,7 @@
 		948210BC2C285908000744A5 /* CharactersScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CharactersScene.sks; sourceTree = "<group>"; };
 		948210BE2C285919000744A5 /* CharactersScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersScene.swift; sourceTree = "<group>"; };
 		949E0C452C350B6300A37E58 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		94B8BCD12C3D013100C8B26A /* PremiumScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PremiumScene.sks; sourceTree = "<group>"; };
+		94AE4F352C48EC2000557059 /* PremiumScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PremiumScene.sks; sourceTree = "<group>"; };
 		94B8BCD32C3D015700C8B26A /* PremiumScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumScene.swift; sourceTree = "<group>"; };
 		94E34C262C1AF1C600849CE4 /* CrashyPlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashyPlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94E34C292C1AF1C600849CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				9446943B2C33E9A3003CEF2A /* ScoresScene.sks */,
 				948210BC2C285908000744A5 /* CharactersScene.sks */,
 				9472953C2C314DFC000511B6 /* GameOverScene.sks */,
-				94B8BCD12C3D013100C8B26A /* PremiumScene.sks */,
+				94AE4F352C48EC2000557059 /* PremiumScene.sks */,
 				9427246E2C22F73A00648F87 /* bgMusic.swift */,
 				94E34C2F2C1AF1C600849CE4 /* GameScene.swift */,
 				94FB08312C22CAEE00CBFFF8 /* TitleScene.swift */,
@@ -231,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94AE4F362C48EC2000557059 /* PremiumScene.sks in Resources */,
 				944289902C1C402C005D4AB2 /* explosion.wav in Resources */,
 				94E34C2C2C1AF1C600849CE4 /* GameScene.sks in Resources */,
 				94E34C352C1AF1C600849CE4 /* Base in Resources */,
@@ -245,7 +246,6 @@
 				9446943C2C33E9A3003CEF2A /* ScoresScene.sks in Resources */,
 				94E34C3A2C1AF1C700849CE4 /* Base in Resources */,
 				944289982C1C4206005D4AB2 /* vaccum.mp3 in Resources */,
-				94B8BCD22C3D013100C8B26A /* PremiumScene.sks in Resources */,
 				9472953D2C314DFC000511B6 /* GameOverScene.sks in Resources */,
 				9442899F2C1C45B5005D4AB2 /* blower.mp3 in Resources */,
 			);
@@ -486,13 +486,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrashyPlane/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Clanky;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.family-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -502,10 +505,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -522,13 +526,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrashyPlane/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Clanky;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.family-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -538,10 +545,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
