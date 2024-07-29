@@ -7,10 +7,13 @@ class GameOverScene: SKScene {
     var gameOver: SKSpriteNode!
     var score: SKSpriteNode!
     var playAgainButton: SKSpriteNode!
+    var coin:SKSpriteNode!
     var medal : SKSpriteNode!
     let YourScore = UserDefaults.standard.integer(forKey: "lastScore")
-    
+    var coinNO = UserDefaults.standard.integer(forKey: "coinNo")
+   
     let highScore = UserDefaults.standard.integer(forKey: "highScore")
+    
     override func didMove(to view: SKView) {
         if let imageName = UserDefaults.standard.string(forKey: "selectedBackground") {
             let texture = SKTexture(imageNamed: imageName)
@@ -112,24 +115,57 @@ class GameOverScene: SKScene {
         }
     }
     func showMedal(){
-        if YourScore > 400  {
+        if YourScore > 490  {
             medal(name: "medalGold")
+            increaseCoins(increment: 3)
+            
         }
-        else if YourScore > 200 && YourScore <= 400 {
+        else if YourScore > 290 && YourScore <= 490 {
             medal(name: "medalSilver")
+            increaseCoins(increment: 2)
+       
+        }
+        else if YourScore > 90 && YourScore <= 290 {
+            medal(name: "medalBronze")
+            increaseCoins(increment: 1)
+         
         }
         else {
             medal(name: "medalBronze")
+        increaseCoins(increment: 0)
+           
         }
     }
     func medal(name: String){
         let texture = SKTexture(imageNamed: name)
         medal = SKSpriteNode(texture: texture)
         medal.zPosition = 56
-        medal.position = CGPoint(x: frame.midX, y: frame.midY - 90)
+        medal.position = CGPoint(x: frame.midX + 80, y: frame.midY - 90)
+    addChild(medal)
+        let CoinTexture = SKTexture(imageNamed: "coin")
+        coin = SKSpriteNode(texture: CoinTexture)
+        coin.zPosition = 56
+       coin.size = CGSize(width: 100, height: 100)
+        coin.position = CGPoint(x: frame.midX - 80, y: frame.midY - 70)
+        addChild(coin)
         
-        addChild(medal)
+       
+        
     }
+    func increaseCoins(increment: Int) {
+           coinNO += increment
+           UserDefaults.standard.set(coinNO, forKey: "coinNo")
+           UserDefaults.standard.synchronize()
+           print("Coins: \(coinNO)")
+        let buttonLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
+        buttonLabel.text = "+\(increment)"
+        buttonLabel.fontSize = 30
+        buttonLabel.fontColor = SKColor.black
+        buttonLabel.alpha = 0.7
+        buttonLabel.zPosition = 56
+        buttonLabel.position = CGPoint(x: frame.midX - 80, y: frame.midY - 130)
+        addChild(buttonLabel)
+       }
 }
 
 

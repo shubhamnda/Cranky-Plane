@@ -21,6 +21,8 @@
 		9446943E2C33E9BA003CEF2A /* ScoresScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446943D2C33E9BA003CEF2A /* ScoresScene.swift */; };
 		9455AC982C22C5B1008373E2 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9455AC972C22C5B1008373E2 /* TitleScene.sks */; };
 		94665E592C36A3760075297C /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94665E582C36A3760075297C /* PaymentManager.swift */; };
+		9470D5F12C57A43600515982 /* InfoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470D5F02C57A43600515982 /* InfoScene.swift */; };
+		9470D5F52C57A48200515982 /* InfoScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9470D5F42C57A48200515982 /* InfoScene.sks */; };
 		9472953D2C314DFC000511B6 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9472953C2C314DFC000511B6 /* GameOverScene.sks */; };
 		9472953F2C314E0D000511B6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472953E2C314E0D000511B6 /* GameOverScene.swift */; };
 		948210BD2C285909000744A5 /* CharactersScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 948210BC2C285908000744A5 /* CharactersScene.sks */; };
@@ -56,6 +58,8 @@
 		9455AC972C22C5B1008373E2 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		94665E572C36A28B0075297C /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		94665E582C36A3760075297C /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
+		9470D5F02C57A43600515982 /* InfoScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoScene.swift; sourceTree = "<group>"; };
+		9470D5F42C57A48200515982 /* InfoScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = InfoScene.sks; sourceTree = "<group>"; };
 		9472953C2C314DFC000511B6 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		9472953E2C314E0D000511B6 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		948210BC2C285908000744A5 /* CharactersScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CharactersScene.sks; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 				948210BC2C285908000744A5 /* CharactersScene.sks */,
 				9472953C2C314DFC000511B6 /* GameOverScene.sks */,
 				94AE4F352C48EC2000557059 /* PremiumScene.sks */,
+				9470D5F42C57A48200515982 /* InfoScene.sks */,
 				9427246E2C22F73A00648F87 /* bgMusic.swift */,
 				94E34C2F2C1AF1C600849CE4 /* GameScene.swift */,
 				94FB08312C22CAEE00CBFFF8 /* TitleScene.swift */,
@@ -131,6 +136,7 @@
 				949E0C452C350B6300A37E58 /* GameManager.swift */,
 				94665E582C36A3760075297C /* PaymentManager.swift */,
 				94B8BCD32C3D015700C8B26A /* PremiumScene.swift */,
+				9470D5F02C57A43600515982 /* InfoScene.swift */,
 				94E34C332C1AF1C600849CE4 /* Main.storyboard */,
 				94E34C362C1AF1C700849CE4 /* Assets.xcassets */,
 				94E34C382C1AF1C700849CE4 /* LaunchScreen.storyboard */,
@@ -237,6 +243,7 @@
 				94E34C352C1AF1C600849CE4 /* Base in Resources */,
 				944289A12C1C4850005D4AB2 /* bgMusic.mp3 in Resources */,
 				94E34C372C1AF1C700849CE4 /* Assets.xcassets in Resources */,
+				9470D5F52C57A48200515982 /* InfoScene.sks in Resources */,
 				9455AC982C22C5B1008373E2 /* TitleScene.sks in Resources */,
 				944289912C1C402C005D4AB2 /* PlayerExplosion.sks in Resources */,
 				944289922C1C402C005D4AB2 /* coin.wav in Resources */,
@@ -319,6 +326,7 @@
 			files = (
 				948210BF2C285919000744A5 /* CharactersScene.swift in Sources */,
 				9427246F2C22F73A00648F87 /* bgMusic.swift in Sources */,
+				9470D5F12C57A43600515982 /* InfoScene.swift in Sources */,
 				94665E592C36A3760075297C /* PaymentManager.swift in Sources */,
 				9472953F2C314E0D000511B6 /* GameOverScene.swift in Sources */,
 				94E34C302C1AF1C600849CE4 /* GameScene.swift in Sources */,

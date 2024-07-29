@@ -30,8 +30,8 @@
             filePath = "CrashyPlane/TitleScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "TitleScene"
             landmarkType = "3">
          </BreakpointContent>

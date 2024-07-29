@@ -94,13 +94,7 @@ class TitleScene: SKScene {
                 loadCharactersScene()
             }
             else if touchedNode.name == "about" {
-                if modalBackground == nil {
-                    showInstructions()
-                } else {
-                    hideInstructions()
-                }
-            } else if touchedNode.name == "closeButton" {
-                hideInstructions()
+              InformationScene()
             }
 //            else if touchedNode.name == "reset" {
 //               
@@ -127,25 +121,7 @@ class TitleScene: SKScene {
     
 
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        for touch in touches {
-            let location = touch.location(in: self)
-            let touchedNode = atPoint(location)
-            
-            if touchedNode.name == "infoButton" {
-                // Reset scale and show instructions
-                touchedNode.run(SKAction.scale(to: 1.0, duration: 0.1)) {
-                    self.showInstructions()
-                }
-            } else if (touchedNode.name == "closeButton" || touchedNode.name == "skyNode") {
-                hideInstructions()
-            }
-            
-        }
-        
-    }
-   
+    
     func createPlayer(characterName: String) {
         let playerTexture = SKTexture(imageNamed: characterName)
         player = SKSpriteNode(texture: playerTexture)
@@ -251,6 +227,14 @@ class TitleScene: SKScene {
             self.view?.presentScene(scene, transition: transition)
         }
     }
+    func InformationScene() {
+        
+        if let scene = InfoScene(fileNamed: "InfoScene") {
+            scene.scaleMode = .resizeFill
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(scene, transition: transition)
+        }
+    }
     func ScoreScene() {
         
         if let scene = ScoresScene(fileNamed: "ScoresScene") {
@@ -274,49 +258,7 @@ class TitleScene: SKScene {
         ad.name = "noAds"
         addChild(ad)
     }
-    func showInstructions() {
-        // Create the modal background
-        modalBackground = SKShapeNode(rectOf: CGSize(width: frame.size.width * 3, height: frame.size.width * 3), cornerRadius: 20)
-        modalBackground.fillColor = SKColor.black.withAlphaComponent(0.8)
-        modalBackground.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2 - 50)
-        modalBackground.zPosition = 102
-        modalBackground.name = "modalBackground"
-        
-        let texture = SKTexture(imageNamed: "instructions")
-        instructions = SKSpriteNode(texture: texture )
-        instructions.zPosition = 102
-        instructions.size = CGSize(width: 360, height: 360)
-        instructions.position = CGPoint(x: 0, y: 0)
-      
-        
-        
-        
-        
-        
-        
-        
-        let closeButton = SKSpriteNode(imageNamed: "close")
-        closeButton.size = CGSize(width: frame.size.width * 0.1, height: frame.size.width * 0.1)
-        closeButton.position = CGPoint(x: 175, y: 180)
-        closeButton.zPosition = 103
-        
-        closeButton.name = "closeButton"
-        
-        
-        
-        
-        modalBackground.addChild(closeButton)
-        modalBackground.addChild(instructions)
-        
-        if let modalBackground = modalBackground {
-            self.addChild(modalBackground)
-        }
-    }
-    func hideInstructions() {
-        // Remove the modal background and its children
-        modalBackground?.removeFromParent()
-        modalBackground = nil
-    }
+   
     func coins(){
         coin = SKSpriteNode(imageNamed:  "coin")
         coin.zPosition = 101
