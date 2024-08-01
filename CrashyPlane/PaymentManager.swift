@@ -6,13 +6,14 @@
 //
 
 import StoreKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObserver {
     
 
 
-    
- 
+   
     private var purchaseCompletion: ((Bool) -> Void)?
 
     
@@ -41,10 +42,14 @@ class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObs
                 print("purchased")
                 
                 UserDefaults.standard.set(true, forKey: "isPremiumUser")
+                
+             savePremiumStatus(isPremium: true)
+                  
+                
                 NotificationCenter.default.post(name: NSNotification.Name("PremiumPurchased"), object: nil)
                 purchaseCompletion?(true)
                purchaseCompletion = nil
-               
+                
                
                       
                
@@ -78,6 +83,18 @@ class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObs
         SKPaymentQueue.default().add(payment)
     }
    
-    
+    func savePremiumStatus(isPremium: Bool) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Database.database().reference().child("users").child(userID)
+        ref.updateChildValues(["isPremiumUser": isPremium]) { error, _ in
+            if let error = error {
+                print("Failed to update premium status: \(error.localizedDescription)")
+            } else {
+                print("Premium status updated successfully")
+            }
+        }
+    }
+       
 }
 

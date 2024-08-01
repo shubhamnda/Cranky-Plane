@@ -1,14 +1,17 @@
 import SpriteKit
+import FirebaseAuth
+import GoogleSignIn
+import FirebaseCore
 import GameplayKit
 import GoogleMobileAds
 import SAConfettiView
 class TitleScene: SKScene {
-  
-      
     
     
-   
-  
+    
+    
+    
+    
     var player: SKSpriteNode!
     var playButton: SKSpriteNode!
     var settingsButton: SKSpriteNode!
@@ -28,6 +31,8 @@ class TitleScene: SKScene {
     var reset: SKSpriteNode!
     var confettiShown = UserDefaults.standard.bool(forKey: "confettiShown")
     var confettiView: SAConfettiView?
+  
+  
     override func didMove(to view: SKView) {
         // Enable user interaction
         
@@ -50,14 +55,14 @@ class TitleScene: SKScene {
             createPlayer(characterName: selectedCharacterName)
         }
         confettiView = SAConfettiView(frame: view.bounds)
-               confettiView?.intensity = 0.5
+        confettiView?.intensity = 0.5
         confettiView?.type = .Confetti // Choose the type you prefer
-
-               if let confettiView = confettiView {
-                   view.addSubview(confettiView)
-               }
         
-//            resetButton()
+        if let confettiView = confettiView {
+            view.addSubview(confettiView)
+        }
+        
+        resetButton()
         
         createButtons()
         
@@ -67,11 +72,15 @@ class TitleScene: SKScene {
         coins()
         logoHome()
         let isPremiumUser = UserDefaults.standard.bool(forKey: "isPremiumUser")
-            if isPremiumUser {
-                updatePremiumUI()
-            }
+        print("\(isPremiumUser)")
+                    if isPremiumUser {
+                        updatePremiumUI()
+                    }
+        
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handlePremiumPurchase), name: NSNotification.Name("PremiumPurchased"), object: nil)
-      
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -81,6 +90,7 @@ class TitleScene: SKScene {
             
             
             if touchedNode.name == "Play" {
+               
                 loadGameScene()
                 
             } else if touchedNode.name == "Settings" {
@@ -94,20 +104,23 @@ class TitleScene: SKScene {
                 loadCharactersScene()
             }
             else if touchedNode.name == "about" {
-              InformationScene()
+              
+                InformationScene()
             }
-//            else if touchedNode.name == "reset" {
-//               
-//                print("user is now reset")
-//                UserDefaults.standard.set(false, forKey: "isPremiumUser")
-//                UserDefaults.standard.setValue(false, forKey: "confettiShown")
-//                updatePremiumUI()
-//            }
+            else if touchedNode.name == "reset" {
+                
+//                                print("user is now reset")
+//                                UserDefaults.standard.set(false, forKey: "isPremiumUser")
+//                                UserDefaults.standard.setValue(false, forKey: "confettiShown")
+//                                updatePremiumUI()
+             showLogoutAlert()
+             
+            }
             else if touchedNode.name == "noAds" {
                 loadPremuimScene()
-//                
+                //
             }
-//
+            //
             
             else if touchedNode.name == "getMoreCoins" {
                 showRewardedAd()
@@ -119,7 +132,7 @@ class TitleScene: SKScene {
         }
     }
     
-
+    
     
     
     func createPlayer(characterName: String) {
@@ -243,7 +256,7 @@ class TitleScene: SKScene {
             self.view?.presentScene(scene, transition: transition)
         }
     }
-       
+    
     func infoButton(){
         info = SKSpriteNode(imageNamed: "info")
         info.size = CGSize(width: frame.size.width * 0.2, height: frame.size.width * 0.2)
@@ -258,7 +271,7 @@ class TitleScene: SKScene {
         ad.name = "noAds"
         addChild(ad)
     }
-   
+    
     func coins(){
         coin = SKSpriteNode(imageNamed:  "coin")
         coin.zPosition = 101
@@ -293,11 +306,11 @@ class TitleScene: SKScene {
         addChild(getMore)
         let premiumTexture = SKTexture(imageNamed: "premium")
         premiumLogo = SKSpriteNode(texture: premiumTexture)
-       premiumLogo.zPosition = 101
+        premiumLogo.zPosition = 101
         premiumLogo.position = CGPoint(x: frame.midX + 130, y: labelYPosition + 10)
         premiumLogo.size = CGSize(width: 0.12 * frame.size.width, height: 0.12 * frame.size.width) // Adjust size proportionallyr
         premiumLogo.isHidden = true
-       
+        
         addChild(premiumLogo)
         
     }
@@ -329,39 +342,71 @@ class TitleScene: SKScene {
         }
     }
     func updatePremiumUI() {
-       
-       
-            premiumLogo.isHidden = false
-            coin.removeFromParent()
-            buttonLabel.removeFromParent()
-            getMore.removeFromParent()
-            ad.removeFromParent()
-            info.position = CGPoint(x: frame.midX, y: frame.midY - 300)
+        
+        
+        premiumLogo.isHidden = false
+        coin.removeFromParent()
+        buttonLabel.removeFromParent()
+        getMore.removeFromParent()
+        ad.removeFromParent()
+        info.position = CGPoint(x: frame.midX, y: frame.midY - 300)
         if !confettiShown {
             UserDefaults.standard.setValue(true, forKey: "confettiShown")
             
-             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                 
-                 self?.confettiView?.startConfetti()
-                 
-             }
-             DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) { [weak self] in
-                 self?.confettiView?.stopConfetti()
-                 self?.confettiView?.removeFromSuperview()
-             }
-         }
-        
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                
+                self?.confettiView?.startConfetti()
+                
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) { [weak self] in
+                self?.confettiView?.stopConfetti()
+                self?.confettiView?.removeFromSuperview()
+            }
         }
-//    func resetButton(){
-//        reset = SKSpriteNode(imageNamed: "blue_button04 1")
-//        reset.size = CGSize(width: 70, height: 70)
-//        reset.size = CGSize(width: 60, height: 30)
-//        reset.position = CGPoint(x: frame.midX + 140, y: frame.midY - 300)
-//        reset.zPosition = 34
-//        reset.name = "reset"
-//        addChild(reset)
-//    }
-  
-}
+        
+    }
+    func resetButton(){
+        reset = SKSpriteNode(imageNamed: "logout")
+        reset.size = CGSize(width: frame.size.width * 0.1, height: frame.size.width * 0.1)
+        
+        reset.position = CGPoint(x: frame.minX + 0.14 * frame.size.width, y: frame.maxY - 0.04 * frame.size.height)
 
+        reset.zPosition = 102
+        reset.alpha = 0.5
+        reset.name = "reset"
+        addChild(reset)
+    }
+    func logOut() {
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                GIDSignIn.sharedInstance.signOut()
+                print("User signed out")
+            if let scene = StartScene(fileNamed: "StartScene") {
+                        scene.scaleMode = .resizeFill
+                        let transition = SKTransition.fade(withDuration: 1.0)
+                        self.view?.presentScene(scene, transition: transition)
+                    }
+                
+                
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
+        }
+    func showLogoutAlert() {
+        let alertController = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { [weak self] _ in
+            self?.logOut()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(logoutAction)
+        
+        if let viewController = self.view?.window?.rootViewController {
+            viewController.present(alertController, animated: true, completion: nil)
+        }
+    }
+}
 

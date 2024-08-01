@@ -7,6 +7,8 @@
 
 import UIKit
 import GoogleMobileAds
+import FirebaseCore
+import GoogleSignIn
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,6 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    UserDefaults.standard.set(true, forKey: "isSoundOn")
                }
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        FirebaseApp.configure()
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                   
+        
+               }
+       
         return true
     }
 
@@ -37,7 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         BackgroundMusic.shared.play()
     }
-
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+      return GIDSignIn.sharedInstance.handle(url)
+    }
 
 }
 

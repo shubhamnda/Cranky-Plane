@@ -1,7 +1,7 @@
 //
 //  CharactersScene.swift
 //  CrashyPlane
-//
+
 //  Created by Shubham Nanda on 23/06/24.
 //
 
@@ -177,4 +177,3 @@ class CharactersScene: SKScene {
         }
     
 }
-

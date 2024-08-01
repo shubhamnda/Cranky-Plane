@@ -12,7 +12,7 @@ class PremiumScene: SKScene {
     private var closeLogo: SKSpriteNode!
   private let premium = PaymentManager()
     private var coinNo = UserDefaults.standard.integer(forKey: "coinNo")
- 
+
     override func sceneDidLoad() {
         super.sceneDidLoad()
         setupBackground()

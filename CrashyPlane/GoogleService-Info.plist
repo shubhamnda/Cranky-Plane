@@ -3,32 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>136492049003-r2lp32fd9d57onprj0ipjtaaaprubb0i.apps.googleusercontent.com</string>
+	<string>282864055184-l22gu3vaedcul96pphktmte6qhh9h7tn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.136492049003-r2lp32fd9d57onprj0ipjtaaaprubb0i</string>
+	<string>com.googleusercontent.apps.282864055184-l22gu3vaedcul96pphktmte6qhh9h7tn</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA-QKa6duAEI9aGF71OCjcc52ga1FVsEP0</string>
+	<string>AIzaSyDDYeolfA_KdTRxeTcGo6C6b0hNLysw_SM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>136492049003</string>
+	<string>282864055184</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>co.shubhamnanda.CrashyPlane</string>
+	<string>co.shubhamnanda.CrashyPlane2</string>
 	<key>PROJECT_ID</key>
-	<string>clanky-b5190</string>
+	<string>cranky-31b7a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>clanky-b5190.appspot.com</string>
+	<string>cranky-31b7a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:136492049003:ios:6447e7b29cb41fdbea872e</string>
+	<string>1:282864055184:ios:8f0e2bc6eb60edd095f915</string>
 </dict>
 </plist>

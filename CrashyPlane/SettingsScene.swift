@@ -17,7 +17,9 @@ class SettingsScene: SKScene {
     let imageNumberLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
     var isPremiumUser: Bool = UserDefaults.standard.bool(forKey: "isPremiumUser")
     
-   var images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7" ]
+ 
+    
+   var images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7","mist","beach" ]
     var currentImageIndex = 0
     var score : SKSpriteNode!
     var returnButton: SKSpriteNode!
@@ -28,6 +30,7 @@ class SettingsScene: SKScene {
     var isSoundOn: Bool = UserDefaults.standard.bool(forKey: "isSoundOn")
     
     override func didMove(to view: SKView) {
+       
 //        if isPremiumUser {
 //            images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7" ]
 //        } else{
@@ -49,7 +52,7 @@ class SettingsScene: SKScene {
             BackgroundMusic.shared.play()
         }
         createSoundToggleButton()
-        
+       
         
         
         let buttonLabel = SKLabelNode(fontNamed: "Arial-BoldMT")

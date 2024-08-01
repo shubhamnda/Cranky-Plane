@@ -4,15 +4,17 @@
 <dict>
 	<key>CFBundleURLTypes</key>
 	<array>
-		<dict/>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.282864055184-l22gu3vaedcul96pphktmte6qhh9h7tn</string>
+			</array>
+		</dict>
 	</array>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-4131085170810437~1740862317</string>
-    <key>UIRequiredDeviceCapabilities</key>
-    <array>
-        <string>face-id</string>
-    </array>
-
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

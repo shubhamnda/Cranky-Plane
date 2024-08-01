@@ -128,27 +128,27 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
                 
                 // Apply impulse based on gravity direction
                 if physicsWorld.gravity.dy < 0 {
-                    if playerName == "planeRed" || playerName == "planeGreen" || playerName == "bird" {
+                    if playerName == "planeRed" || playerName == "planeGreen" || playerName == "bird" || playerName == "bat" {
                         player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 35))}
                     else if playerName == "dragon" {
                         player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 55))
                     }
-                    else if playerName == "bat" {
-                        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
-                    }
+//                    else if playerName == "bat" {
+//                        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
+//                    }
                     
                     else if playerName == "skeleton" {
                         player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
                     }
                 } else {
-                    if playerName == "planeRed" || playerName == "planeBlue" || playerName == "bird" {
+                    if playerName == "planeRed" || playerName == "planeBlue" || playerName == "bird" || playerName == "bat"{
                         player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -35))}
                     else if playerName == "dragon" {
                         player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -55))
                     }
-                    else if playerName == "bat" {
-                        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -10))
-                    }
+//                    else if playerName == "bat" {
+//                        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -10))
+//                    }
                     
                     else if playerName == "skeleton" {
                         player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -30 ))
@@ -458,10 +458,17 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
                 
             }
             
-            let sound = SKAction.playSoundFileNamed("explosion.wav", waitForCompletion: false)
-            run(sound)
-            //            gameOver.alpha = 1
-            //            gameState = .dead
+            let soundNode = SKAudioNode(fileNamed: "explosion.wav")
+
+         
+            soundNode.autoplayLooped = false
+            soundNode.run(SKAction.changeVolume(to: 0.2, duration: 0))
+
+          
+            addChild(soundNode)
+
+            
+            soundNode.run(SKAction.play())
             
             
             BackgroundMusic.shared.stop()
