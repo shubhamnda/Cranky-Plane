@@ -1,4 +1,6 @@
 import SpriteKit
+import FirebaseDatabaseInternal
+import FirebaseAuth
 
 class PremiumScene: SKScene {
     private var buyButton: SKShapeNode!
@@ -220,7 +222,9 @@ class PremiumScene: SKScene {
    print("\(coinNo)")
         if coinNo >= 200 {
                UserDefaults.standard.set(true, forKey: "isPremiumUser")
+            
                coinNo -= 200
+            savePremiumStatus(isPremium: true, coin: coinNo)
 //               UserDefaults.standard.set(coinNo, forKey: "coinNo")
           
                NotificationCenter.default.post(name: NSNotification.Name("PremiumPurchased"), object: nil)
@@ -228,7 +232,16 @@ class PremiumScene: SKScene {
               
            } else {
                print("Need more coins")
+               let alertController = UIAlertController(title: "Insufficient Coins", message: "Need More Coins To buy Premium", preferredStyle: .alert)
+               
+               let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+               alertController.addAction(cancelAction)
+               if let viewController = self.view?.window?.rootViewController {
+                   viewController.present(alertController, animated: true, completion: nil)
+               }
            }
+        
+        
     }
   private  func returnToTitleScene() {
         if let titleScene = TitleScene(fileNamed: "TitleScene") {
@@ -237,6 +250,17 @@ class PremiumScene: SKScene {
             self.view?.presentScene(titleScene, transition: transition)
         }
     }
-
+    func savePremiumStatus(isPremium: Bool, coin: Int) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Database.database().reference().child("users").child(userID)
+        ref.updateChildValues(["isPremiumUser": isPremium,"Coins": coin]) { error, _ in
+            if let error = error {
+                print("Failed to update premium status: \(error.localizedDescription)")
+            } else {
+                print("Premium status updated successfully")
+            }
+        }
+    }
 
 }

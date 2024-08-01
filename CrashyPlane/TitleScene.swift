@@ -5,6 +5,8 @@ import FirebaseCore
 import GameplayKit
 import GoogleMobileAds
 import SAConfettiView
+import FirebaseDatabase
+import Firebase
 class TitleScene: SKScene {
     
     
@@ -276,12 +278,12 @@ class TitleScene: SKScene {
         coin = SKSpriteNode(imageNamed:  "coin")
         coin.zPosition = 101
         coin.size = CGSize(width: frame.size.width * 0.12, height: frame.size.width * 0.12)
-        coin.position = CGPoint(x: frame.maxX - 0.14 * frame.size.width, y: frame.maxY - 0.04 * frame.size.height)
+        coin.position = CGPoint(x: frame.maxX - 0.18 * frame.size.width, y: frame.maxY - 0.04 * frame.size.height)
         addChild(coin)
         buttonLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
         
         buttonLabel.text = "\(coinNo)"
-        buttonLabel.fontSize = 0.07 * frame.size.width
+        buttonLabel.fontSize = 0.06 * frame.size.width
         buttonLabel.fontColor = SKColor.white
         
         buttonLabel.zPosition = 101
@@ -326,7 +328,9 @@ class TitleScene: SKScene {
                 self.coinNo += 1
                 self.buttonLabel.text = "\(self.coinNo)"
                 // Optionally, you can reload the rewarded ad here
+                
                 UserDefaults.standard.set(self.coinNo, forKey: "coinNo")
+                self.updateCoinNumberInFirebase()
                 GameManager.shared.loadRewardedAd()
                 
             }
@@ -406,6 +410,17 @@ class TitleScene: SKScene {
         
         if let viewController = self.view?.window?.rootViewController {
             viewController.present(alertController, animated: true, completion: nil)
+        }
+    }
+    func updateCoinNumberInFirebase() {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("users").child(userID)
+        ref.updateChildValues(["Coins": coinNo]) { error, _ in
+            if let error = error {
+                print("Failed to update coin number in Firebase: \(error.localizedDescription)")
+            } else {
+                print("Successfully updated coin number in Firebase")
+            }
         }
     }
 }

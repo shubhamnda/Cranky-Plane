@@ -10,13 +10,15 @@ class StartScene: SKScene {
     var player: SKSpriteNode!
     var logo: SKSpriteNode!
     var ui = touch()
-    
+  
+   
     override func didMove(to view: SKView) {
         setupGoogleButton()
         setupLogo()
         setupBackground()
         setupCharacter()
         playBackgroundMusic()
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -69,7 +71,7 @@ class StartScene: SKScene {
                         
                         if !snapshot.exists() {
                             print("Data does not exist, creating new user data")
-                            ref.setValue(["email": userEmail, "isPremiumUser": false]) { error, _ in
+                            ref.setValue(["email": userEmail, "isPremiumUser": false,"Coins": 0]) { error, _ in
                                 if let error = error {
                                     print("Failed to write user data to database: \(error.localizedDescription)")
                                 } else {
@@ -83,6 +85,13 @@ class StartScene: SKScene {
                             print("Data exists, reading isPremiumUser value")
                             if let userData = snapshot.value as? [String: Any] {
                                 print("User data: \(userData)")
+                                
+                                if let coin = userData["Coins"] as? Int {
+                                    UserDefaults.standard.setValue(coin, forKey: "coinNo")
+                                    print("coin updated")
+                                }
+                                           
+                                           
                                 if let isPremiumUser = userData["isPremiumUser"] as? Bool {
                                     UserDefaults.standard.setValue(isPremiumUser, forKey: "isPremiumUser")
                                     print("Fetched isPremiumUser: \(isPremiumUser)")
@@ -91,6 +100,7 @@ class StartScene: SKScene {
                                     let isPremium = (isPremiumUser == 1)
                                     UserDefaults.standard.setValue(isPremium, forKey: "isPremiumUser")
                                     print("Fetched isPremiumUser: \(isPremium)")
+                                   
                                     self?.transitionToTitleScene()
                                 } else {
                                     print("isPremiumUser key is missing or not a valid type")
