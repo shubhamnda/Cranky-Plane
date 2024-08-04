@@ -8,7 +8,7 @@ class InfoScene: SKScene {
     let imageNumberLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
     var score: SKSpriteNode!
     
-    var images = ["instructions", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4", "BG", "airadventurelevel6", "airadventurelevel7"]
+    var images = ["instructions", "Instructions2","Instructions3"]
     var currentImageIndex = 0
     
     var returnButton: SKSpriteNode!

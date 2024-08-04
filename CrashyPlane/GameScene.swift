@@ -9,7 +9,8 @@ import SpriteKit
 import SceneKit
 import GameplayKit
 import GoogleMobileAds
-
+import Firebase
+import FirebaseAuth
 enum GameState {
     case showingLogo
     case playing
@@ -58,6 +59,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "highScore")
+            highScoreSave(value: newValue)
             UserDefaults.standard.synchronize()
         }
     }
@@ -485,7 +487,18 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         }
     }
     
-    
+    func highScoreSave(value: Int) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Database.database().reference().child("users").child(userID)
+        ref.updateChildValues(["High Score":value ]) { error, _ in
+            if let error = error {
+                print("Failed to update high score \(error.localizedDescription)")
+            } else {
+                print("high score status updated successfully")
+            }
+        }
+    }
     
 }
 

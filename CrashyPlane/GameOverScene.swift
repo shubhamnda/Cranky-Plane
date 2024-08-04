@@ -2,7 +2,7 @@
 
 import SpriteKit
 import GameplayKit
-
+import Firebase
 class GameOverScene: SKScene {
     var gameOver: SKSpriteNode!
     var score: SKSpriteNode!
@@ -115,9 +115,14 @@ class GameOverScene: SKScene {
         }
     }
     func showMedal(){
-        if YourScore > 490  {
+        if YourScore > 490 && YourScore <= 999 {
             medal(name: "medalGold")
             increaseCoins(increment: 3)
+            
+        }
+        if YourScore > 1000 {
+            medal(name: "medalGold")
+            increaseCoins(increment: 15)
             
         }
         else if YourScore > 290 && YourScore <= 490 {

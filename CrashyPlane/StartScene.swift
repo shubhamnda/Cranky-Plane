@@ -71,7 +71,7 @@ class StartScene: SKScene {
                         
                         if !snapshot.exists() {
                             print("Data does not exist, creating new user data")
-                            ref.setValue(["email": userEmail, "isPremiumUser": false,"Coins": 0]) { error, _ in
+                            ref.setValue(["email": userEmail, "isPremiumUser": false,"Coins": 0, "High Score": 0]) { error, _ in
                                 if let error = error {
                                     print("Failed to write user data to database: \(error.localizedDescription)")
                                 } else {
@@ -89,6 +89,10 @@ class StartScene: SKScene {
                                 if let coin = userData["Coins"] as? Int {
                                     UserDefaults.standard.setValue(coin, forKey: "coinNo")
                                     print("coin updated")
+                                }
+                                if let highScore = userData["High Score"] as? Int {
+                                    UserDefaults.standard.setValue(highScore, forKey: "highScore")
+                                    print("high score")
                                 }
                                            
                                            

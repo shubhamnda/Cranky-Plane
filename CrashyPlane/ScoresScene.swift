@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import Firebase
 
 class ScoresScene: SKScene {
     var score: SKSpriteNode!
