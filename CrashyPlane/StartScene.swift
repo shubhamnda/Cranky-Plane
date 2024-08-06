@@ -5,20 +5,27 @@ import GoogleSignIn
 import FirebaseAuth
 import FirebaseDatabase
 
+
+
 class StartScene: SKScene {
     var button: SKSpriteNode!
     var player: SKSpriteNode!
     var logo: SKSpriteNode!
+    var loadingIndicator: UIActivityIndicatorView!
     var ui = touch()
+    var termsCheckmark: SKSpriteNode!
+      var termsLabel: SKLabelNode!
+      var isTermsAccepted = false
   
-   
+  
     override func didMove(to view: SKView) {
         setupGoogleButton()
         setupLogo()
         setupBackground()
         setupCharacter()
         playBackgroundMusic()
-        
+        setupLoadingIndicator()
+        setupTermsCheckmark()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -26,13 +33,85 @@ class StartScene: SKScene {
             let location = touch.location(in: self)
             let touchedNode = atPoint(location)
             if touchedNode.name == "google" {
-                ui.glow(button: button)
-                ui.ui(button: button)
-                signInWithGoogle()
-            }
+                            if isTermsAccepted {
+                                ui.glow(button: button)
+                                ui.ui(button: button)
+                                showLoadingIndicator()
+                                signInWithGoogle()
+                            } else {
+                                showAlert()
+                                
+                            }
+                        } else if touchedNode.name == "termsCheckmark" {
+                           
+                            toggleTermsCheckmark()
+                        }
+            else if touchedNode.name == "termsButton" {
+                print("url open")
+                if let url = URL(string: "https://www.google.com") {
+                    UIApplication.shared.open(url)}
+                        }
         }
     }
-    
+    func toggleTermsCheckmark() {
+        let uncheckedTexture = SKTexture(imageNamed: "checkboxUnchecked")
+        let checkedTexture = SKTexture(imageNamed: "checkboxChecked")
+        
+        if isTermsAccepted {
+            termsCheckmark.texture = uncheckedTexture
+            isTermsAccepted = false
+            print("rejected")
+        } else {
+            termsCheckmark.texture = checkedTexture
+            isTermsAccepted = true
+            print("accepted")
+        }
+    }
+    func setupTermsCheckmark() {
+        termsLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
+        termsLabel.alpha = 0.7
+        termsLabel.text =  "I accept the terms and conditions"
+           termsLabel.fontSize = 18
+           termsLabel.fontColor = .black
+       
+           termsLabel.position = CGPoint(x: frame.midX + 20, y: frame.midY - 257)
+        termsLabel.zPosition = 100
+           termsLabel.name = "termsLabel"
+           addChild(termsLabel)
+        let underline = SKSpriteNode(color: .black, size: CGSize(width: termsLabel.frame.width, height: 2))
+        underline.position = CGPoint(x: termsLabel.position.x, y: termsLabel.position.y - termsLabel.frame.height / 3 )
+          underline.zPosition = 99
+          underline.name = "underline"
+          addChild(underline)
+           
+           let uncheckedTexture = SKTexture(imageNamed: "checkboxUnchecked")
+           termsCheckmark = SKSpriteNode(texture: uncheckedTexture)
+           termsCheckmark.position = CGPoint(x: frame.midX - 150, y: frame.midY - 250)
+           termsCheckmark.name = "termsCheckmark"
+        termsCheckmark.alpha = 0.7
+        termsCheckmark.size = CGSize(width: 25, height: 25)
+           addChild(termsCheckmark)
+        let termsButton = SKSpriteNode(color: .clear, size: CGSize(width: termsLabel.frame.width, height: termsLabel.frame.height + 20))
+        termsButton.position = termsLabel.position
+        termsButton.name = "termsButton"
+        addChild(termsButton)
+        
+       }
+    func showAlert() {
+        let alertController = UIAlertController(
+            title: "Terms Required",
+            message: "To continue, Please review and accept our Terms and Conditions. Your acceptance is required for further access.",
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "Understood", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        if let viewController = self.view?.window?.rootViewController {
+            viewController.present(alertController, animated: true, completion: nil)
+        }
+    }
+
     func signInWithGoogle() {
         guard let presentingVC = self.view?.window?.rootViewController else { return }
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -43,11 +122,13 @@ class StartScene: SKScene {
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { [unowned self] result, error in
             if let error = error {
                 print("Google Sign-In error: \(error.localizedDescription)")
+                self.hideLoadingIndicator()
                 return
             }
             
             guard let user = result?.user, let idToken = user.idToken?.tokenString else {
                 print("Failed to get ID token or user information")
+                self.hideLoadingIndicator()
                 return
             }
             
@@ -56,6 +137,7 @@ class StartScene: SKScene {
             Auth.auth().signIn(with: credential) { [weak self] authResult, error in
                 if let error = error {
                     print("Firebase authentication error: \(error.localizedDescription)")
+                    self?.hideLoadingIndicator()
                     return
                 }
                 
@@ -67,8 +149,6 @@ class StartScene: SKScene {
                     let ref = Database.database().reference().child("users").child(userID)
                     
                     ref.observeSingleEvent(of: .value) { snapshot in
-                       
-                        
                         if !snapshot.exists() {
                             print("Data does not exist, creating new user data")
                             ref.setValue(["email": userEmail, "isPremiumUser": false,"Coins": 0, "High Score": 0]) { error, _ in
@@ -77,8 +157,8 @@ class StartScene: SKScene {
                                 } else {
                                     print("Successfully wrote user data to database")
                                     UserDefaults.standard.setValue(false, forKey: "isPremiumUser")
-                                   
                                 }
+                                self?.hideLoadingIndicator()
                                 self?.transitionToTitleScene()
                             }
                         } else {
@@ -94,31 +174,29 @@ class StartScene: SKScene {
                                     UserDefaults.standard.setValue(highScore, forKey: "highScore")
                                     print("high score")
                                 }
-                                           
-                                           
+                                            
                                 if let isPremiumUser = userData["isPremiumUser"] as? Bool {
                                     UserDefaults.standard.setValue(isPremiumUser, forKey: "isPremiumUser")
                                     print("Fetched isPremiumUser: \(isPremiumUser)")
+                                    self?.hideLoadingIndicator()
                                     self?.transitionToTitleScene()
                                 } else if let isPremiumUser = userData["isPremiumUser"] as? Int {
                                     let isPremium = (isPremiumUser == 1)
                                     UserDefaults.standard.setValue(isPremium, forKey: "isPremiumUser")
                                     print("Fetched isPremiumUser: \(isPremium)")
-                                   
+                                    self?.hideLoadingIndicator()
                                     self?.transitionToTitleScene()
                                 } else {
                                     print("isPremiumUser key is missing or not a valid type")
+                                    self?.hideLoadingIndicator()
                                 }
                             } else {
                                 print("Failed to cast snapshot value to [String: Any]")
+                                self?.hideLoadingIndicator()
                             }
                         }
-                    
-                
                     }
                 }
-                
-               
             }
         }
     }
@@ -164,6 +242,24 @@ class StartScene: SKScene {
         }
     }
     
+    func setupLoadingIndicator() {
+        if let view = self.view {
+            loadingIndicator = UIActivityIndicatorView(style: .large)
+            loadingIndicator.center = view.center
+            loadingIndicator.color = .black
+            loadingIndicator.hidesWhenStopped = true
+            view.addSubview(loadingIndicator)
+        }
+    }
+    
+    func showLoadingIndicator() {
+        loadingIndicator.startAnimating()
+    }
+    
+    func hideLoadingIndicator() {
+        loadingIndicator.stopAnimating()
+    }
+    
     func createPlayer(characterName: String) {
         let playerTexture = SKTexture(imageNamed: characterName)
         player = SKSpriteNode(texture: playerTexture)
@@ -199,7 +295,8 @@ class StartScene: SKScene {
             addChild(sky)
         }
     }
-    func transitionToTitleScene(){
+    
+    func transitionToTitleScene() {
         if let scene = SettingsScene(fileNamed: "TitleScene") {
             scene.scaleMode = .resizeFill
             let transition = SKTransition.fade(withDuration: 1.0)
@@ -207,4 +304,3 @@ class StartScene: SKScene {
         }
     }
 }
-
