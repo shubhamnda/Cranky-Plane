@@ -22,10 +22,11 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
     
     var instructionPanel: SKSpriteNode!
     var closeButton: SKSpriteNode!
-    
+    var tap: SKSpriteNode!
     var returnButton: SKSpriteNode!
     var speedFactor: CGFloat = 1.0
     let speedIncrement: CGFloat = 0.03
+    var  playButtonLabel: SKLabelNode!
     let upPipeTextures = [
         SKTexture(imageNamed: "PipeDownBlue"),
         SKTexture(imageNamed: "PipeDown"),
@@ -125,6 +126,8 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
                 let sequence1 = SKAction.sequence([fadeOut, wait, activatePlayer1, remove])
                 logo.run(sequence)
                 returnButton.run(sequence1)
+                tap.run(sequence1)
+                playButtonLabel.run(sequence1)
             } else if gameState == .playing {
                 player.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 
@@ -179,7 +182,16 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
 
         logo.position = CGPoint(x: frame.midX, y: frame.midY+60)
         addChild(logo)
-        
+        tap = SKSpriteNode(imageNamed: "tapTick")
+        tap.size = CGSize(width: frame.size.width * 0.15, height: frame.size.width * 0.15)
+        tap.position = CGPoint(x: frame.midX, y: frame.midY-140)
+        addChild(tap)
+        playButtonLabel =  SKLabelNode(fontNamed: "Arial-BoldMT")
+        playButtonLabel.text = "Tap To Play!"
+        playButtonLabel.fontSize = 24
+        playButtonLabel.fontColor = SKColor.white
+        playButtonLabel.position = CGPoint(x: tap.position.x, y: tap.position.y - 60 )
+        addChild( playButtonLabel)
         gameOver = SKSpriteNode(imageNamed: "go")
         gameOver.position = CGPoint(x: frame.midX, y: frame.midY)
         gameOver.alpha = 0

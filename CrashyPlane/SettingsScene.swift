@@ -65,7 +65,7 @@ class SettingsScene: SKScene {
         addChild(buttonLabel)
         
         let SoundLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
-        SoundLabel.text = "BG Music"
+        SoundLabel.text = "Sound"
         SoundLabel.fontSize = 38
         SoundLabel.fontColor = SKColor.black
         SoundLabel.alpha = 0.7

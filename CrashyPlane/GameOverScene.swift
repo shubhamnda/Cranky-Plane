@@ -117,7 +117,7 @@ class GameOverScene: SKScene {
     func showMedal(){
         if YourScore > 490 && YourScore <= 999 {
             medal(name: "medalGold")
-            increaseCoins(increment: 3)
+            increaseCoins(increment: 6)
             
         }
         if YourScore > 1000 {
@@ -127,7 +127,7 @@ class GameOverScene: SKScene {
         }
         else if YourScore > 290 && YourScore <= 490 {
             medal(name: "medalSilver")
-            increaseCoins(increment: 2)
+            increaseCoins(increment: 3)
        
         }
         else if YourScore > 90 && YourScore <= 290 {

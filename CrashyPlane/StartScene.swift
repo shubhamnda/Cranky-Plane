@@ -48,7 +48,7 @@ class StartScene: SKScene {
                         }
             else if touchedNode.name == "termsButton" {
                 print("url open")
-                if let url = URL(string: "https://www.google.com") {
+                if let url = URL(string: "https://website-two-red-68.vercel.app/") {
                     UIApplication.shared.open(url)}
                         }
         }

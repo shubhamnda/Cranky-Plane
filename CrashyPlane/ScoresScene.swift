@@ -1,9 +1,3 @@
-//
-//  GameScene.swift
-//  nnnf
-//
-//  Created by Shubham Nanda on 19/06/24.
-//
 
 import SpriteKit
 import GameplayKit

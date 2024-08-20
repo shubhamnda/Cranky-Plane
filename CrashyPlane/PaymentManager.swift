@@ -86,8 +86,13 @@ class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObs
     func savePremiumStatus(isPremium: Bool) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
+        
         let ref = Database.database().reference().child("users").child(userID)
-        ref.updateChildValues(["isPremiumUser": isPremium]) { error, _ in
+        let purchaseDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let purchaseDateString = dateFormatter.string(from: purchaseDate)
+        ref.updateChildValues(["isPremiumUser": isPremium,"purchaseDate": purchaseDateString]) { error, _ in
             if let error = error {
                 print("Failed to update premium status: \(error.localizedDescription)")
             } else {

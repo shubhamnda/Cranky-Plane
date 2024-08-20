@@ -16,9 +16,11 @@ class TitleScene: SKScene {
     
     var player: SKSpriteNode!
     var playButton: SKSpriteNode!
+    var adButton: SKSpriteNode!
     var settingsButton: SKSpriteNode!
     var scoresButton: SKSpriteNode!
     var charactersButton: SKSpriteNode!
+    var playLabel: SKSpriteNode!
     var info : SKSpriteNode!
     var logo: SKSpriteNode!
     var ad: SKSpriteNode!
@@ -124,7 +126,7 @@ class TitleScene: SKScene {
             }
             //
             
-            else if touchedNode.name == "getMoreCoins" {
+            else if touchedNode.name == "Watch Ad" {
                 showRewardedAd()
                 
             }
@@ -193,14 +195,24 @@ class TitleScene: SKScene {
         buttonLabel.position = CGPoint(x: 0, y: -menuTexture.size().height / 8)
         
         menu.addChild(buttonLabel)
+        if menu.name == "Watch Ad" {
+            buttonLabel.position = CGPoint(x: -20, y: -menuTexture.size().height / 8)
+            
+            let playTexture = SKTexture(imageNamed: "video")
+          playLabel = SKSpriteNode(texture: playTexture)
+            playLabel.size =  CGSize(width: frame.size.width * 0.12, height: frame.size.width * 0.1)
+            playLabel.position = CGPoint(x: buttonLabel.position.x + 95, y: buttonLabel.position.y + 15)
+            buttonLabel.addChild(playLabel)
+        }
         return menu
     }
     
     func createButtons() {
-        playButton = menu(category: "Play", imageName: "blue_button04 1", position: CGPoint(x: self.frame.midX, y: self.frame.midY + 100))
-        settingsButton = menu(category: "Settings", imageName: "green_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY))
-        scoresButton = menu(category: "Score", imageName: "red_button11", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 100))
-        charactersButton = menu(category: "Characters", imageName: "yellow_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 200))
+        playButton = menu(category: "Play", imageName: "blue_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY + 120))
+        adButton = menu(category: "Watch Ad", imageName: "button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY + 40))
+        settingsButton = menu(category: "Settings", imageName: "green_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 200 ))
+        scoresButton = menu(category: "Score", imageName: "red_button11", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 40))
+        charactersButton = menu(category: "Characters", imageName: "yellow_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 120))
     }
     
     func logoHome() {
@@ -261,7 +273,7 @@ class TitleScene: SKScene {
     
     func infoButton(){
         info = SKSpriteNode(imageNamed: "info")
-        info.size = CGSize(width: frame.size.width * 0.2, height: frame.size.width * 0.2)
+        info.size = CGSize(width: frame.size.width * 0.1, height: frame.size.width * 0.1)
         info.position = CGPoint(x: frame.midX - 50, y: frame.midY - 280)
         info.zPosition = 34
         info.name = "about"
@@ -292,20 +304,13 @@ class TitleScene: SKScene {
         // Adjust the position to be just to the right of the coin sprite
         let labelXPosition = coin.position.x + coin.size.width / 3 + labelOffset
         let labelYPosition = coin.position.y - 10
-        let labelAPosition = coin.position.x - coin.size.width / 3 - labelOffset
+        _ = coin.position.x - coin.size.width / 3 - labelOffset
         
         
         buttonLabel.position = CGPoint(x: labelXPosition, y: labelYPosition)
         buttonLabel.horizontalAlignmentMode = .left
         addChild(buttonLabel)
-        let texture = SKTexture(imageNamed: "plus")
-        getMore = SKSpriteNode(texture: texture)
-        getMore.zPosition = 101
-        getMore.position = CGPoint(x: labelAPosition - 8, y: labelYPosition + 10)
-        getMore.size = CGSize(width: 0.08 * frame.size.width, height: 0.08 * frame.size.width) // Adjust size proportionally
-        getMore.alpha = 0.5
-        getMore.name = "getMoreCoins"
-        addChild(getMore)
+        
         let premiumTexture = SKTexture(imageNamed: "premium")
         premiumLogo = SKSpriteNode(texture: premiumTexture)
         premiumLogo.zPosition = 101
@@ -353,7 +358,7 @@ class TitleScene: SKScene {
         buttonLabel.removeFromParent()
         getMore.removeFromParent()
         ad.removeFromParent()
-        info.position = CGPoint(x: frame.midX, y: frame.midY - 300)
+        info.position = CGPoint(x: frame.midX, y: frame.midY - 260)
         if !confettiShown {
             UserDefaults.standard.setValue(true, forKey: "confettiShown")
             
