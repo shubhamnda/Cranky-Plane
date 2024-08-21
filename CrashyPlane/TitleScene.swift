@@ -290,7 +290,7 @@ class TitleScene: SKScene {
         coin = SKSpriteNode(imageNamed:  "coin")
         coin.zPosition = 101
         coin.size = CGSize(width: frame.size.width * 0.12, height: frame.size.width * 0.12)
-        coin.position = CGPoint(x: frame.maxX - 0.18 * frame.size.width, y: frame.maxY - 0.04 * frame.size.height)
+        coin.position = CGPoint(x: frame.maxX - 0.25 * frame.size.width, y: frame.maxY - 0.04 * frame.size.height)
         addChild(coin)
         buttonLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
         
@@ -356,7 +356,7 @@ class TitleScene: SKScene {
         premiumLogo.isHidden = false
         coin.removeFromParent()
         buttonLabel.removeFromParent()
-        getMore.removeFromParent()
+       
         ad.removeFromParent()
         info.position = CGPoint(x: frame.midX, y: frame.midY - 260)
         if !confettiShown {
@@ -389,7 +389,9 @@ class TitleScene: SKScene {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
+                
                 GIDSignIn.sharedInstance.signOut()
+                UserDefaults.standard.setValue(false, forKey: "isPremiumUser")
                 print("User signed out")
             if let scene = StartScene(fileNamed: "StartScene") {
                         scene.scaleMode = .resizeFill

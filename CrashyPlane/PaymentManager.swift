@@ -91,7 +91,7 @@ class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObs
         let purchaseDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let purchaseDateString = dateFormatter.string(from: purchaseDate)
+        let purchaseDateString = "\(dateFormatter.string(from: purchaseDate)) Purchased"
         ref.updateChildValues(["isPremiumUser": isPremium,"purchaseDate": purchaseDateString]) { error, _ in
             if let error = error {
                 print("Failed to update premium status: \(error.localizedDescription)")

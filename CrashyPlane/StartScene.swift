@@ -174,22 +174,35 @@ class StartScene: SKScene {
                                     UserDefaults.standard.setValue(highScore, forKey: "highScore")
                                     print("high score")
                                 }
-                                            
-                                if let isPremiumUser = userData["isPremiumUser"] as? Bool {
-                                    UserDefaults.standard.setValue(isPremiumUser, forKey: "isPremiumUser")
-                                    print("Fetched isPremiumUser: \(isPremiumUser)")
+                                if let expirationDateString = userData["premiumExpirationDate"] as? String {
+                                    print("\(expirationDateString)")
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                    if let expirationDate = dateFormatter.date(from: expirationDateString), Date() > expirationDate {
+                                        ref.updateChildValues(["isPremiumUser": false]) { error, _ in
+                                            if let error = error {
+                                                print("Failed to update premium status: \(error.localizedDescription)")
+                                            } else {
+                                                print("expiry status updated successfully")
+                                            }
+                                        }
+                                        UserDefaults.standard.setValue(false, forKey: "isPremiumUser")
+                                        print("was expired so changed")
+                                    }
+                                    else {
+                                        
+                                        print("not expired yet")
+                                        UserDefaults.standard.setValue(true, forKey: "isPremiumUser")
+                                    }}
+                              
+                                    
+                                    print("Fetched isPremiumUser")
                                     self?.hideLoadingIndicator()
                                     self?.transitionToTitleScene()
-                                } else if let isPremiumUser = userData["isPremiumUser"] as? Int {
-                                    let isPremium = (isPremiumUser == 1)
-                                    UserDefaults.standard.setValue(isPremium, forKey: "isPremiumUser")
-                                    print("Fetched isPremiumUser: \(isPremium)")
+                                 
+                                   
                                     self?.hideLoadingIndicator()
-                                    self?.transitionToTitleScene()
-                                } else {
-                                    print("isPremiumUser key is missing or not a valid type")
-                                    self?.hideLoadingIndicator()
-                                }
+                                
                             } else {
                                 print("Failed to cast snapshot value to [String: Any]")
                                 self?.hideLoadingIndicator()
