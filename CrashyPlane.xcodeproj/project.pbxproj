@@ -151,6 +151,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94697B3A2C80E18300F1EAD4 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				94E34C2B2C1AF1C600849CE4 /* GameScene.sks */,
+				9455AC972C22C5B1008373E2 /* TitleScene.sks */,
+				9427246A2C22F1D100648F87 /* SettingsScene.sks */,
+				9446943B2C33E9A3003CEF2A /* ScoresScene.sks */,
+				948210BC2C285908000744A5 /* CharactersScene.sks */,
+				9472953C2C314DFC000511B6 /* GameOverScene.sks */,
+				94AE4F352C48EC2000557059 /* PremiumScene.sks */,
+				9470D5F42C57A48200515982 /* InfoScene.sks */,
+				94635AAC2C5BAEF000817E77 /* StartScene.sks */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		94697B3B2C80E19100F1EAD4 /* SceneFiles */ = {
+			isa = PBXGroup;
+			children = (
+				94E34C2F2C1AF1C600849CE4 /* GameScene.swift */,
+				94FB08312C22CAEE00CBFFF8 /* TitleScene.swift */,
+				9427246C2C22F1E100648F87 /* SettingsScene.swift */,
+				9446943D2C33E9BA003CEF2A /* ScoresScene.swift */,
+				948210BE2C285919000744A5 /* CharactersScene.swift */,
+				9472953E2C314E0D000511B6 /* GameOverScene.swift */,
+				94665E582C36A3760075297C /* PaymentManager.swift */,
+				94B8BCD32C3D015700C8B26A /* PremiumScene.swift */,
+				9470D5F02C57A43600515982 /* InfoScene.swift */,
+				94635AAE2C5BAF6C00817E77 /* StartScene.swift */,
+			);
+			path = SceneFiles;
+			sourceTree = "<group>";
+		};
+		94697B3C2C80E1B700F1EAD4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				94635AB02C5BAF9A00817E77 /* touch.swift */,
+				94E34C2D2C1AF1C600849CE4 /* Actions.sks */,
+				9427246E2C22F73A00648F87 /* bgMusic.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		94E34C1D2C1AF1C600849CE4 = {
 			isa = PBXGroup;
 			children = (
@@ -174,33 +217,13 @@
 			isa = PBXGroup;
 			children = (
 				94E34C292C1AF1C600849CE4 /* AppDelegate.swift */,
-				94E34C2D2C1AF1C600849CE4 /* Actions.sks */,
-				94E34C2B2C1AF1C600849CE4 /* GameScene.sks */,
-				9455AC972C22C5B1008373E2 /* TitleScene.sks */,
-				9427246A2C22F1D100648F87 /* SettingsScene.sks */,
-				9446943B2C33E9A3003CEF2A /* ScoresScene.sks */,
-				948210BC2C285908000744A5 /* CharactersScene.sks */,
-				9472953C2C314DFC000511B6 /* GameOverScene.sks */,
-				94AE4F352C48EC2000557059 /* PremiumScene.sks */,
-				9470D5F42C57A48200515982 /* InfoScene.sks */,
-				94635AAC2C5BAEF000817E77 /* StartScene.sks */,
-				9427246E2C22F73A00648F87 /* bgMusic.swift */,
-				94E34C2F2C1AF1C600849CE4 /* GameScene.swift */,
-				94FB08312C22CAEE00CBFFF8 /* TitleScene.swift */,
-				9427246C2C22F1E100648F87 /* SettingsScene.swift */,
-				9446943D2C33E9BA003CEF2A /* ScoresScene.swift */,
-				948210BE2C285919000744A5 /* CharactersScene.swift */,
 				94E34C312C1AF1C600849CE4 /* GameViewController.swift */,
-				9472953E2C314E0D000511B6 /* GameOverScene.swift */,
-				94665E582C36A3760075297C /* PaymentManager.swift */,
-				94B8BCD32C3D015700C8B26A /* PremiumScene.swift */,
-				9470D5F02C57A43600515982 /* InfoScene.swift */,
-				94635AAE2C5BAF6C00817E77 /* StartScene.swift */,
-				94635AB02C5BAF9A00817E77 /* touch.swift */,
-				949E0C452C350B6300A37E58 /* GameManager.swift */,
 				94E34C332C1AF1C600849CE4 /* Main.storyboard */,
-				94E34C362C1AF1C700849CE4 /* Assets.xcassets */,
 				94E34C382C1AF1C700849CE4 /* LaunchScreen.storyboard */,
+				94F03FF42C80E31E00F68712 /* Model */,
+				94F03FF52C80E33500F68712 /* View */,
+				94697B3C2C80E1B700F1EAD4 /* Utilities */,
+				94E34C362C1AF1C700849CE4 /* Assets.xcassets */,
 				94635AB42C5BB2EC00817E77 /* GoogleService-Info.plist */,
 				943733B02C34364200F266B8 /* Info.plist */,
 				94665E572C36A28B0075297C /* Configuration.storekit */,
@@ -219,6 +242,23 @@
 				9442898E2C1C402B005D4AB2 /* PlayerExplosion.sks */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		94F03FF42C80E31E00F68712 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				949E0C452C350B6300A37E58 /* GameManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		94F03FF52C80E33500F68712 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				94697B3A2C80E18300F1EAD4 /* Scenes */,
+				94697B3B2C80E19100F1EAD4 /* SceneFiles */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		97A1D25139106FF38FAB4D53 /* Frameworks */ = {

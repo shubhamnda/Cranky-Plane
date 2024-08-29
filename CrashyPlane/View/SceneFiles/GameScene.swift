@@ -11,6 +11,7 @@ import GameplayKit
 import GoogleMobileAds
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 enum GameState {
     case showingLogo
     case playing
