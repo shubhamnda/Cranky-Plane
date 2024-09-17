@@ -75,11 +75,12 @@ class CharactersScene: SKScene {
                     }
                 } else {
                     if isCharacterLocked(nodeName) && !isPremiumUser() {
-                                          
-                                           print("Character \(nodeName) is locked. Please purchase premium to unlock.")
+                      
+                        showAlert()
                                        } else {
                                            showHighlight(at: touchedNode.position)
                                            UserDefaults.standard.set(nodeName, forKey: "selectedCharacter")
+                                           returnToTitleScene()
                                        }
                 }
             }
@@ -111,7 +112,41 @@ class CharactersScene: SKScene {
             addChild(sky)
         }
     }
-    
+    func showAlert() {
+        guard let viewController = self.view?.window?.rootViewController else {
+            print("Root view controller not found.")
+            return
+        }
+
+        print("Presenting alert from view controller: \(viewController)")
+
+        let alertController = UIAlertController(
+            title: "Premium Feature",
+            message: "Character is locked. Please purchase premium to unlock.",
+            preferredStyle: .alert
+        )
+
+        // Cancel button to dismiss the alert
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        // Buy Now button to present the PremiumScene
+        let buyNowAction = UIAlertAction(title: "Buy Now", style: .default) { _ in
+            self.showPremiumScene()
+        }
+
+        alertController.addAction(cancelAction)
+        alertController.addAction(buyNowAction)
+
+        viewController.present(alertController, animated: true, completion: nil)
+    }
+    func showPremiumScene() {
+        if let premiumScene = PremiumScene(fileNamed: "PremiumScene") {
+            premiumScene.scaleMode = .resizeFill
+            let transition = SKTransition.fade(withDuration: 1)
+            self.view?.presentScene(premiumScene, transition: transition)
+        }
+    }
+
     func createReturnButton() {
         returnButton = SKSpriteNode(imageNamed: "back4")
         returnButton.position = CGPoint(x: frame.midX , y: frame.midY - 260)

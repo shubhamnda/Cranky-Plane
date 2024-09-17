@@ -16,7 +16,7 @@ class SettingsScene: SKScene {
     let leftButton = SKLabelNode(fontNamed: "Arial-BoldMT")
     let imageNumberLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
     var isPremiumUser: Bool = UserDefaults.standard.bool(forKey: "isPremiumUser")
-    
+    var buttonLabel: SKLabelNode!
  
     
    var images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7","mist","beach" ]
@@ -30,12 +30,7 @@ class SettingsScene: SKScene {
     var isSoundOn: Bool = UserDefaults.standard.bool(forKey: "isSoundOn")
     
     override func didMove(to view: SKView) {
-       
-//        if isPremiumUser {
-//            images = ["airadventurelevel1", "airadventurelevel2", "airadventurelevel3", "airadventurelevel4","BG" ,"airadventurelevel6", "airadventurelevel7" ]
-//        } else{
-//          images =   ["airadventurelevel1", "airadventurelevel2" ]
-//        }
+ 
         
         setupUI()
         logo()
@@ -100,7 +95,17 @@ class SettingsScene: SKScene {
             else if touchedNode.name == "skyChangeButton" {
                 
                 
-                updateSky()
+                if currentImageIndex >= 2 && !isPremiumUser {
+                              // Show the premium purchase screen if a premium background is selected
+                              if let premiumScene = PremiumScene(fileNamed: "PremiumScene") {
+                                  premiumScene.scaleMode = .resizeFill
+                                  let transition = SKTransition.fade(withDuration: 1.0)
+                                  self.view?.presentScene(premiumScene, transition: transition)
+                              }
+                          } else {
+                              // Apply the selected background
+                            updateSky()
+                          }
             }
             else if rightButton.contains(location) {
                 currentImageIndex = (currentImageIndex + 1) % images.count
@@ -166,6 +171,7 @@ class SettingsScene: SKScene {
             self.view?.presentScene(titleScene, transition: transition)
         }
     }
+  
     
     
     func createSoundToggleButton() {
@@ -200,7 +206,7 @@ class SettingsScene: SKScene {
         
         addChild(skyChangeButton)
         
-        let buttonLabel = SKLabelNode(fontNamed: "Arial")
+        buttonLabel = SKLabelNode(fontNamed: "Arial")
         buttonLabel.text = "Apply"
         buttonLabel.fontSize = 24
         buttonLabel.fontColor = SKColor.white
@@ -285,8 +291,9 @@ class SettingsScene: SKScene {
           lockedImage.size = CGSize(width: 60, height: 60)
                 imageView.addChild(lockedImage)
            
-            skyChangeButton.isUserInteractionEnabled = true
-                    skyChangeButton.alpha = 0.5
+            skyChangeButton.isUserInteractionEnabled = false
+                   
+            buttonLabel.text = "Buy Premium"
             UserDefaults.standard.removeObject(forKey: "selectedBackground")
           
             }
@@ -298,6 +305,7 @@ class SettingsScene: SKScene {
                 }
             skyChangeButton.isUserInteractionEnabled = false
             skyChangeButton.alpha = 1
+            buttonLabel.text = "Apply"
             UserDefaults.standard.set(imageName, forKey: "selectedBackground")
             }
        

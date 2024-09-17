@@ -113,10 +113,7 @@ class TitleScene: SKScene {
             }
             else if touchedNode.name == "reset" {
                 
-//                                print("user is now reset")
-//                                UserDefaults.standard.set(false, forKey: "isPremiumUser")
-//                                UserDefaults.standard.setValue(false, forKey: "confettiShown")
-//                                updatePremiumUI()
+
              showLogoutAlert()
              
             }
@@ -200,7 +197,7 @@ class TitleScene: SKScene {
             
             let playTexture = SKTexture(imageNamed: "video")
           playLabel = SKSpriteNode(texture: playTexture)
-            playLabel.size =  CGSize(width: frame.size.width * 0.12, height: frame.size.width * 0.1)
+            playLabel.size =  CGSize(width: frame.size.width * 0.08, height: frame.size.width * 0.06)
             playLabel.position = CGPoint(x: buttonLabel.position.x + 95, y: buttonLabel.position.y + 15)
             buttonLabel.addChild(playLabel)
         }
@@ -209,8 +206,8 @@ class TitleScene: SKScene {
     
     func createButtons() {
         playButton = menu(category: "Play", imageName: "blue_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY + 120))
-        adButton = menu(category: "Watch Ad", imageName: "button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY + 40))
-        settingsButton = menu(category: "Settings", imageName: "green_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 200 ))
+        adButton = menu(category: "Watch Ad", imageName: "green_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY + 40))
+        settingsButton = menu(category: "Settings", imageName: "button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 200 ))
         scoresButton = menu(category: "Score", imageName: "red_button11", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 40))
         charactersButton = menu(category: "Characters", imageName: "yellow_button04", position: CGPoint(x: self.frame.midX, y: self.frame.midY - 120))
     }
@@ -273,7 +270,7 @@ class TitleScene: SKScene {
     
     func infoButton(){
         info = SKSpriteNode(imageNamed: "info")
-        info.size = CGSize(width: frame.size.width * 0.1, height: frame.size.width * 0.1)
+        info.size = CGSize(width: frame.size.width * 0.15, height: frame.size.width * 0.15)
         info.position = CGPoint(x: frame.midX - 50, y: frame.midY - 280)
         info.zPosition = 34
         info.name = "about"
@@ -358,7 +355,7 @@ class TitleScene: SKScene {
         buttonLabel.removeFromParent()
        
         ad.removeFromParent()
-        info.position = CGPoint(x: frame.midX, y: frame.midY - 260)
+        info.position = CGPoint(x: frame.midX, y: frame.midY - 280)
         if !confettiShown {
             UserDefaults.standard.setValue(true, forKey: "confettiShown")
             
@@ -391,7 +388,11 @@ class TitleScene: SKScene {
                 try firebaseAuth.signOut()
                 
                 GIDSignIn.sharedInstance.signOut()
+                
                 UserDefaults.standard.setValue(false, forKey: "isPremiumUser")
+                print("User reset")
+                UserDefaults.standard.set("planeRed", forKey: "selectedCharacter")
+                UserDefaults.standard.set("airadventurelevel1", forKey: "selectedBackground")
                 print("User signed out")
             if let scene = StartScene(fileNamed: "StartScene") {
                         scene.scaleMode = .resizeFill

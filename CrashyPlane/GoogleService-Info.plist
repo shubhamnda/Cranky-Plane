@@ -3,32 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>282864055184-l22gu3vaedcul96pphktmte6qhh9h7tn.apps.googleusercontent.com</string>
+	<string>586893209478-a0c65ohnl4ptrm2q2ceed2l2ccv26ke4.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.282864055184-l22gu3vaedcul96pphktmte6qhh9h7tn</string>
+	<string>com.googleusercontent.apps.586893209478-a0c65ohnl4ptrm2q2ceed2l2ccv26ke4</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDDYeolfA_KdTRxeTcGo6C6b0hNLysw_SM</string>
+	<string>AIzaSyCKhkyCnbEUala7GSTseVOC4XWZiOAmBtQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>282864055184</string>
+	<string>586893209478</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>co.shubhamnanda.CrashyPlane2</string>
 	<key>PROJECT_ID</key>
-	<string>cranky-31b7a</string>
+	<string>clanky-8403c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>cranky-31b7a.appspot.com</string>
+	<string>clanky-8403c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:282864055184:ios:8f0e2bc6eb60edd095f915</string>
+	<string>1:586893209478:ios:d4c2eeb76cca282bf34607</string>
+	<key>DATABASE_URL</key>
+	<string>https://clanky-8403c-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

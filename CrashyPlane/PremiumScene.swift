@@ -81,7 +81,7 @@ class PremiumScene: SKScene {
 
     func setupBenefits() {
         benefitsNode = SKNode()
-        let benefits = ["✓ Ad-free experience", "✓ Exclusive skins", "✓ More Backgrounds", "✓ Priority support"]
+        let benefits = ["✓ Ad-free experience", "✓ Exclusive skins", "✓ More Backgrounds"]
         
         for (index, benefit) in benefits.enumerated() {
             let benefitLabel = SKLabelNode(fontNamed: "AvenirNext-Regular")
@@ -132,51 +132,7 @@ class PremiumScene: SKScene {
    
         
        
-//    func  setUpCoinButton() {
-//      
-//        let buttonWidth: CGFloat = 220
-//           let buttonHeight: CGFloat = 60
-//           let cornerRadius: CGFloat = 20
-//        
-//           let buttonPath = UIBezierPath(roundedRect: CGRect(x: -buttonWidth/2, y: -buttonHeight/2, width: buttonWidth, height: buttonHeight), cornerRadius: cornerRadius)
-//           
-//           coinButton = SKShapeNode(path: buttonPath.cgPath)
-//        coinButton.fillColor = .systemBlue
-//        coinButton.strokeColor = .clear
-//        coinButton.position = CGPoint(x: frame.midX - 180, y: frame.midY - 500)
-//        coinButton.zPosition = 2
-//      
-//        coin = SKSpriteNode(imageNamed:  "coin")
-//        coin.zPosition = 101
-//        coin.size = CGSize(width: 60, height: 60)
-//        coin.position = CGPoint(x: 75, y: 0)
-//        coinButton.addChild(coin)
-//       
-//      
-//        let orLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
-//        orLabel.text = "OR"
-//        orLabel.fontSize = 24
-//        orLabel.fontColor = .white
-//        orLabel.verticalAlignmentMode = .center
-//        orLabel.position = CGPoint(x: coinButton.position.x, y: coinButton.position.y + 60)
-//        addChild(orLabel)
-//        let buyLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
-//        buyLabel.text = "\(coinNo)/ 200 "
-//        buyLabel.fontSize = 24
-//        buyLabel.fontColor = .white
-//        buyLabel.verticalAlignmentMode = .center
-//        buyLabel.position = CGPoint(x: 0, y: 0)
-//        coinButton.addChild(buyLabel)
-//
-//        coinButton.alpha = 0.9
-//        addChild(coinButton)
-//
-//        let glowAction = SKAction.sequence([
-//            SKAction.fadeAlpha(to: 1.0, duration: 1.0),
-//            SKAction.fadeAlpha(to: 0.8, duration: 1.0)
-//        ])
-//        coinButton.run(SKAction.repeatForever(glowAction))
-//    }
+
     func setUpCoinButton() {
         let buttonWidth: CGFloat = 120
         let buttonHeight: CGFloat = 90
@@ -189,7 +145,7 @@ class PremiumScene: SKScene {
         // Define coin amounts
         let coinRequirements = [200, 600, 1000]
         let orLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
-                orLabel.text = "OR"
+                orLabel.text = "------------------Use Coins------------------"
                 orLabel.fontSize = 24
                 orLabel.fontColor = .white
                 orLabel.verticalAlignmentMode = .center
