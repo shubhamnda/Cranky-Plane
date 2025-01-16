@@ -33,7 +33,9 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         SKTexture(imageNamed: "PipeDown"),
         
     ]
-    
+    var lastPipeXPosition: CGFloat = 0
+    let pipeScale: CGFloat = 4.0
+    var pipeDistance: CGFloat = 120
     let downPipeTextures = [
         
         SKTexture(imageNamed: "PipeUpRED"),
@@ -41,9 +43,15 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
     ]
     
     
+    let powerUps = [
+        
+        SKTexture(imageNamed: "chemical")
+       
+    ]
+    
     var logo: SKSpriteNode!
     var gameOver: SKSpriteNode!
-    
+    var chemicalPowerUp:SKSpriteNode!
     var gameState = GameState.showingLogo
     var scoreLabel: SKLabelNode!
     
@@ -117,6 +125,8 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
                 let activatePlayer = SKAction.run { [unowned self] in
                     self.player.physicsBody?.isDynamic = true
                     self.startPipes()
+                    self.generatePowerup()
+                    
                 }
                 let activatePlayer1 = SKAction.run { [unowned self] in
                     self.player.physicsBody?.isDynamic = true
@@ -131,7 +141,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
                 playButtonLabel.run(sequence1)
             } else if gameState == .playing {
                 player.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                
+              
                 // Apply impulse based on gravity direction
                 if physicsWorld.gravity.dy < 0 {
                     if playerName == "planeRed" || playerName == "planeGreen" || playerName == "bird" || playerName == "bat" {
@@ -252,6 +262,8 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
             sky.run(moveForever)
             addChild(sky)
         }
+     
+        
     }
     
     func createPipes(){
@@ -293,7 +305,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         
         
         
-        let pipeScale: CGFloat = 4.0 // Adjust this value to increase or decrease the height
+        // Adjust this value to increase or decrease the height
         upPipe.setScale(pipeScale)
         downPipe.setScale(pipeScale)
         
@@ -329,10 +341,11 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         
         let xPosition = frame.width + upPipe.frame.width
         let max = CGFloat(frame.height / 2)
-        
+     
+           lastPipeXPosition = xPosition
         let yPosition = CGFloat.random(in: -50...max)
         
-        let pipeDistance: CGFloat = 120
+      
         
         upPipe.position = CGPoint(x: xPosition, y: yPosition + upPipe.size.height + pipeDistance)
         
@@ -349,6 +362,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         downPipe.run(moveSequence)
         rightPipeCollision.run(moveSequence)
         leftPipeCollision.run(moveSequence)
+        
     }
     
     func startPipes() {
@@ -361,6 +375,15 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         let repeatForever = SKAction.repeatForever(sequence)
         
         run(repeatForever)
+      
+    }
+    func generatePowerup() {
+        let spawnPowerUp = SKAction.run { [unowned self] in
+            self.spawnChemicalPowerUp()
+        }
+        let powerUpWait = SKAction.wait(forDuration: 20)
+        let powerUpSequence = SKAction.sequence([spawnPowerUp, powerUpWait])
+        run(SKAction.repeatForever(powerUpSequence))
     }
     func createScore() {
         scoreLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
@@ -402,6 +425,56 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
         
         // Run the scale action on the scene's root node
         gameOverScene.run(group)
+    }
+    func spawnChemicalPowerUp() {
+        let powerups: [(String, Double)] = [("chemical", 0.45), ("Gap", 0.45), ("2x", 0.06)]
+        let totalWeight = powerups.reduce(0) { $0 + $1.1 }
+        let randomValue = Double.random(in: 0..<totalWeight)
+        var cumulativeWeight: Double = 0
+        var selectedPowerUp: String = ""
+
+        for powerup in powerups {
+            cumulativeWeight += powerup.1
+            if randomValue < cumulativeWeight {
+                selectedPowerUp = powerup.0
+                break
+            }
+        }
+
+        let image = selectedPowerUp
+        chemicalPowerUp = SKSpriteNode(texture: SKTexture(imageNamed: image))
+        if image == "chemical" {
+            chemicalPowerUp.name = "chemicalPowerUp"
+        }
+        else if image == "Gap" {
+            chemicalPowerUp.name = "gapPowerUp"
+        }
+        else {
+            chemicalPowerUp.name = "2xPowerUp"
+        }
+     
+        
+           chemicalPowerUp.size = CGSize(width: 70, height: 80)
+           
+           // Calculate position between pipes
+           let pipeSpacing: CGFloat = frame.width / 2  // Approximate space between pipes
+           let spawnX = lastPipeXPosition + pipeSpacing/2 + 10  // Spawn halfway between pipes
+           let spawnY = CGFloat.random(in: frame.height * 0.3...frame.height * 0.7)  // Safe vertical range
+           
+           chemicalPowerUp.position = CGPoint(x: spawnX, y: spawnY)
+           
+           chemicalPowerUp.physicsBody = SKPhysicsBody(circleOfRadius: chemicalPowerUp.size.width / 2)
+           chemicalPowerUp.physicsBody?.isDynamic = false
+           chemicalPowerUp.physicsBody?.categoryBitMask = 0x1 << 3
+           chemicalPowerUp.physicsBody?.contactTestBitMask = 0x1 << 0
+           chemicalPowerUp.physicsBody?.collisionBitMask = 0
+           
+           addChild(chemicalPowerUp)
+           
+           // Adjust movement duration to match pipe speed
+           let moveLeft = SKAction.moveBy(x: -frame.width - 200, y: 0, duration: 6.0 / Double(speedFactor))
+           let remove = SKAction.removeFromParent()
+           chemicalPowerUp.run(SKAction.sequence([moveLeft, remove]))
     }
     func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == "scoreDetect" || contact.bodyB.node?.name == "scoreDetect" {
@@ -464,7 +537,119 @@ class GameScene: SKScene , SKPhysicsContactDelegate{
                 
             }
             return }
-        
+        if contact.bodyA.node?.name == "chemicalPowerUp" || contact.bodyB.node?.name == "chemicalPowerUp" {
+            if contact.bodyA.node == player {
+                contact.bodyB.node?.removeFromParent()
+                
+                // Initial shrink effect
+                if let explosion = SKEmitterNode(fileNamed: "Magic") {
+                    explosion.setScale(0.2)
+                    explosion.position = player.position
+                    explosion.zPosition = player.zPosition + 2
+                    addChild(explosion)
+                    
+                    let particleWait = SKAction.wait(forDuration: 0.4)
+                    let particleRemove = SKAction.removeFromParent()
+                    explosion.run(SKAction.sequence([particleWait, particleRemove]))
+                }
+                
+                let shrink = SKAction.scale(to: 0.5, duration: 0.2)
+                let wait = SKAction.wait(forDuration: 10.0)
+                let growBack = SKAction.scale(to: 1.0, duration: 0.2)
+                
+                // Create grow effect with both particle and sound
+                let growEffect = SKAction.run {
+                    // Particle effect
+                    if let explosion = SKEmitterNode(fileNamed: "Magic") {
+                        explosion.setScale(0.2)
+                        explosion.position = self.player.position
+                        explosion.zPosition = self.player.zPosition + 2
+                        self.addChild(explosion)
+                        
+                        let particleWait = SKAction.wait(forDuration: 0.4)
+                        let particleRemove = SKAction.removeFromParent()
+                        explosion.run(SKAction.sequence([particleWait, particleRemove]))
+                    }
+                    // Play grow sound
+                    self.run(SKAction.playSoundFileNamed("shrink.mp3", waitForCompletion: false))
+                }
+                
+                // Combine all actions
+                let sequence = SKAction.sequence([
+                    shrink,
+                    SKAction.playSoundFileNamed("shrink.mp3", waitForCompletion: false), // Shrink sound
+                    wait,
+                    growEffect, // Particle effect and grow sound
+                    growBack
+                ])
+                
+                player.run(sequence)
+            } else {
+                contact.bodyA.node?.removeFromParent()
+            }
+
+            return        }
+        if contact.bodyA.node?.name == "gapPowerUp" || contact.bodyB.node?.name == "gapPowerUp" {
+            if contact.bodyA.node == player {
+                contact.bodyB.node?.removeFromParent()
+                if let explosion = SKEmitterNode(fileNamed: "Magic") {
+                    explosion.setScale(0.1)  // Slightly larger for better visual impact
+                      explosion.position = player.position
+                      explosion.zPosition = player.zPosition + 1  // Ensure it's above the player
+                      addChild(explosion)
+                      
+                      // Sync particle with shrink effect (disappear as shrink completes)
+                      let particleWait = SKAction.wait(forDuration: 0.4)
+                      let particleRemove = SKAction.removeFromParent()
+                      explosion.run(SKAction.sequence([particleWait, particleRemove]))
+                    
+                }
+                pipeDistance = 190  // Assuming pipeScale is a global or class property
+                    let scaleWait = SKAction.wait(forDuration: 10.0)  // Same as `wait` above
+                    let revertPipeScale = SKAction.run { [weak self] in
+                        self?.pipeDistance = 120
+                    }
+                    run(SKAction.sequence([scaleWait, revertPipeScale]))
+                
+                let sound = SKAction.playSoundFileNamed("stretch.mp3", waitForCompletion: false)
+                run(sound)
+            }
+            else {
+                contact.bodyA.node?.removeFromParent()
+            }
+         
+           
+            
+            return
+        }
+        if contact.bodyA.node?.name == "2xPowerUp" || contact.bodyB.node?.name == "2xPowerUp" {
+            if contact.bodyA.node == player {
+                contact.bodyB.node?.removeFromParent()
+                if let explosion = SKEmitterNode(fileNamed: "Magic") {
+                    explosion.setScale(0.1)  // Slightly larger for better visual impact
+                      explosion.position = player.position
+                      explosion.zPosition = player.zPosition + 1  // Ensure it's above the player
+                      addChild(explosion)
+                      
+                      // Sync particle with shrink effect (disappear as shrink completes)
+                      let particleWait = SKAction.wait(forDuration: 0.4)
+                      let particleRemove = SKAction.removeFromParent()
+                      explosion.run(SKAction.sequence([particleWait, particleRemove]))
+                    
+                }
+                score = 2 * score
+                
+                let sound = SKAction.playSoundFileNamed("gameBonus.mp3", waitForCompletion: false)
+                run(sound)
+            }
+            else {
+                contact.bodyA.node?.removeFromParent()
+            }
+         
+           
+            
+            return
+        }
         if contact.bodyA.node == player || contact.bodyB.node == player {
             if let explosion = SKEmitterNode(fileNamed: "PlayerExplosion") {
                 explosion.position = player.position

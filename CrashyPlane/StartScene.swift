@@ -19,6 +19,11 @@ class StartScene: SKScene {
   
   
     override func didMove(to view: SKView) {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
+              // Transition to the title screen
+              transitionToTitleScene()
+              return
+          }
         setupGoogleButton()
         setupLogo()
         setupBackground()
@@ -142,7 +147,7 @@ class StartScene: SKScene {
                 }
                 
                 print("User signed in: \(authResult?.user.email ?? "no email")")
-                
+         
                 if let currentUser = Auth.auth().currentUser {
                     let userID = currentUser.uid
                     let userEmail = currentUser.email ?? "No Email"

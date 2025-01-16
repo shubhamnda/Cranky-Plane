@@ -268,7 +268,7 @@ class PremiumScene: SKScene {
            
            
             savePremiumStatus(isPremium: true, coin: coinNo, Category: 200)
-//               UserDefaults.standard.set(coinNo, forKey: "coinNo")
+               UserDefaults.standard.set(coinNo, forKey: "coinNo")
           
                NotificationCenter.default.post(name: NSNotification.Name("PremiumPurchased"), object: nil)
            
@@ -279,7 +279,7 @@ class PremiumScene: SKScene {
          
             coinNo -= 600
          savePremiumStatus(isPremium: true, coin: coinNo, Category: 600)
-//               UserDefaults.standard.set(coinNo, forKey: "coinNo")
+               UserDefaults.standard.set(coinNo, forKey: "coinNo")
        
             NotificationCenter.default.post(name: NSNotification.Name("PremiumPurchased"), object: nil)
         }
@@ -288,7 +288,7 @@ class PremiumScene: SKScene {
          
             coinNo -= 1000
          savePremiumStatus(isPremium: true, coin: coinNo, Category: 1000)
-//               UserDefaults.standard.set(coinNo, forKey: "coinNo")
+               UserDefaults.standard.set(coinNo, forKey: "coinNo")
        
             NotificationCenter.default.post(name: NSNotification.Name("PremiumPurchased"), object: nil)
         }

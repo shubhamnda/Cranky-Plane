@@ -391,6 +391,7 @@ class TitleScene: SKScene {
                 
                 UserDefaults.standard.setValue(false, forKey: "isPremiumUser")
                 print("User reset")
+                UserDefaults.standard.set(false, forKey: "isLoggedIn")
                 UserDefaults.standard.set("planeRed", forKey: "selectedCharacter")
                 UserDefaults.standard.set("airadventurelevel1", forKey: "selectedBackground")
                 print("User signed out")

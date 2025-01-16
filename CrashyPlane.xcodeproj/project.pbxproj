@@ -12,6 +12,11 @@
 		9427246D2C22F1E100648F87 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427246C2C22F1E100648F87 /* SettingsScene.swift */; };
 		9427246F2C22F73A00648F87 /* bgMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427246E2C22F73A00648F87 /* bgMusic.swift */; };
 		942B3D8E2C85B142004BE00E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 942B3D8D2C85B142004BE00E /* GoogleService-Info.plist */; };
+		9435E89B2D3910140048C260 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9435E8982D3910140048C260 /* Assets.xcassets */; };
+		9435E8A12D3914960048C260 /* Magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9435E8A02D3914960048C260 /* Magic.sks */; };
+		9435E8A52D392E4F0048C260 /* shrink.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9435E8A42D392E4F0048C260 /* shrink.mp3 */; };
+		9435E8A72D3935570048C260 /* stretch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9435E8A62D3935570048C260 /* stretch.mp3 */; };
+		9435E8A92D39361D0048C260 /* gameBonus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9435E8A82D39361D0048C260 /* gameBonus.mp3 */; };
 		944289902C1C402C005D4AB2 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9442898D2C1C402A005D4AB2 /* explosion.wav */; };
 		944289912C1C402C005D4AB2 /* PlayerExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9442898E2C1C402B005D4AB2 /* PlayerExplosion.sks */; };
 		944289922C1C402C005D4AB2 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9442898F2C1C402C005D4AB2 /* coin.wav */; };
@@ -35,9 +40,7 @@
 		94635A902C5BADEF00817E77 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A8F2C5BADEF00817E77 /* FirebaseFirestoreCombine-Community */; };
 		94635A922C5BADEF00817E77 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A912C5BADEF00817E77 /* FirebaseFunctions */; };
 		94635A942C5BADEF00817E77 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A932C5BADEF00817E77 /* FirebaseFunctionsCombine-Community */; };
-		94635A962C5BADEF00817E77 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A952C5BADEF00817E77 /* FirebaseInAppMessaging-Beta */; };
 		94635A982C5BADEF00817E77 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A972C5BADEF00817E77 /* FirebaseInstallations */; };
-		94635A9A2C5BADEF00817E77 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A992C5BADEF00817E77 /* FirebaseMessaging */; };
 		94635A9C2C5BADEF00817E77 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A9B2C5BADEF00817E77 /* FirebaseMLModelDownloader */; };
 		94635A9E2C5BADEF00817E77 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A9D2C5BADEF00817E77 /* FirebasePerformance */; };
 		94635AA02C5BADEF00817E77 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 94635A9F2C5BADEF00817E77 /* FirebaseRemoteConfig */; };
@@ -76,6 +79,11 @@
 		9427246C2C22F1E100648F87 /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
 		9427246E2C22F73A00648F87 /* bgMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bgMusic.swift; sourceTree = "<group>"; };
 		942B3D8D2C85B142004BE00E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9435E8982D3910140048C260 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9435E8A02D3914960048C260 /* Magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Magic.sks; sourceTree = "<group>"; };
+		9435E8A42D392E4F0048C260 /* shrink.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shrink.mp3; sourceTree = "<group>"; };
+		9435E8A62D3935570048C260 /* stretch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stretch.mp3; sourceTree = "<group>"; };
+		9435E8A82D39361D0048C260 /* gameBonus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameBonus.mp3; sourceTree = "<group>"; };
 		943733B02C34364200F266B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9442898D2C1C402A005D4AB2 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		9442898E2C1C402B005D4AB2 /* PlayerExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerExplosion.sks; sourceTree = "<group>"; };
@@ -120,7 +128,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				94635AA62C5BADEF00817E77 /* FirebaseVertexAI-Preview in Frameworks */,
-				94635A9A2C5BADEF00817E77 /* FirebaseMessaging in Frameworks */,
 				94635A902C5BADEF00817E77 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				94635A9E2C5BADEF00817E77 /* FirebasePerformance in Frameworks */,
 				94635AA42C5BADEF00817E77 /* FirebaseStorageCombine-Community in Frameworks */,
@@ -139,7 +146,6 @@
 				94635A802C5BADEE00817E77 /* FirebaseAppCheck in Frameworks */,
 				94635A9C2C5BADEF00817E77 /* FirebaseMLModelDownloader in Frameworks */,
 				94635A7E2C5BADEE00817E77 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				94635A962C5BADEF00817E77 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				94635A842C5BADEE00817E77 /* FirebaseAuth in Frameworks */,
 				94635A882C5BADEE00817E77 /* FirebaseCrashlytics in Frameworks */,
 				94635AA22C5BADEF00817E77 /* FirebaseStorage in Frameworks */,
@@ -198,7 +204,6 @@
 				94635AAE2C5BAF6C00817E77 /* StartScene.swift */,
 				949E0C452C350B6300A37E58 /* GameManager.swift */,
 				94635AB02C5BAF9A00817E77 /* touch.swift */,
-				94E34C2D2C1AF1C600849CE4 /* Actions.sks */,
 				9427246E2C22F73A00648F87 /* bgMusic.swift */,
 				94E34C362C1AF1C700849CE4 /* Assets.xcassets */,
 				942B3D8D2C85B142004BE00E /* GoogleService-Info.plist */,
@@ -216,7 +221,13 @@
 				9442899E2C1C45B5005D4AB2 /* blower.mp3 */,
 				944289A02C1C4850005D4AB2 /* bgMusic.mp3 */,
 				944289972C1C4206005D4AB2 /* vaccum.mp3 */,
+				9435E8A42D392E4F0048C260 /* shrink.mp3 */,
+				9435E8A62D3935570048C260 /* stretch.mp3 */,
+				9435E8A82D39361D0048C260 /* gameBonus.mp3 */,
+				94E34C2D2C1AF1C600849CE4 /* Actions.sks */,
 				9442898E2C1C402B005D4AB2 /* PlayerExplosion.sks */,
+				9435E8982D3910140048C260 /* Assets.xcassets */,
+				9435E8A02D3914960048C260 /* Magic.sks */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -272,9 +283,7 @@
 				94635A8F2C5BADEF00817E77 /* FirebaseFirestoreCombine-Community */,
 				94635A912C5BADEF00817E77 /* FirebaseFunctions */,
 				94635A932C5BADEF00817E77 /* FirebaseFunctionsCombine-Community */,
-				94635A952C5BADEF00817E77 /* FirebaseInAppMessaging-Beta */,
 				94635A972C5BADEF00817E77 /* FirebaseInstallations */,
-				94635A992C5BADEF00817E77 /* FirebaseMessaging */,
 				94635A9B2C5BADEF00817E77 /* FirebaseMLModelDownloader */,
 				94635A9D2C5BADEF00817E77 /* FirebasePerformance */,
 				94635A9F2C5BADEF00817E77 /* FirebaseRemoteConfig */,
@@ -341,15 +350,20 @@
 				9470D5F52C57A48200515982 /* InfoScene.sks in Resources */,
 				9455AC982C22C5B1008373E2 /* TitleScene.sks in Resources */,
 				944289912C1C402C005D4AB2 /* PlayerExplosion.sks in Resources */,
+				9435E89B2D3910140048C260 /* Assets.xcassets in Resources */,
 				944289922C1C402C005D4AB2 /* coin.wav in Resources */,
 				9427246B2C22F1D200648F87 /* SettingsScene.sks in Resources */,
+				9435E8A92D39361D0048C260 /* gameBonus.mp3 in Resources */,
 				94E34C2E2C1AF1C600849CE4 /* Actions.sks in Resources */,
+				9435E8A12D3914960048C260 /* Magic.sks in Resources */,
 				948210BD2C285909000744A5 /* CharactersScene.sks in Resources */,
 				9446943C2C33E9A3003CEF2A /* ScoresScene.sks in Resources */,
 				94E34C3A2C1AF1C700849CE4 /* Base in Resources */,
 				944289982C1C4206005D4AB2 /* vaccum.mp3 in Resources */,
 				9472953D2C314DFC000511B6 /* GameOverScene.sks in Resources */,
+				9435E8A52D392E4F0048C260 /* shrink.mp3 in Resources */,
 				9442899F2C1C45B5005D4AB2 /* blower.mp3 in Resources */,
+				9435E8A72D3935570048C260 /* stretch.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,23 +599,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_TEAM = 7DSGM69CYA;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrashyPlane/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Clanky;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.family-games";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cranky Plane";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "face-id";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,23 +639,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_TEAM = 7DSGM69CYA;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CrashyPlane/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Clanky;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.family-games";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cranky Plane";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "face-id";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -773,20 +785,10 @@
 			package = 94635A782C5BADD700817E77 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFunctionsCombine-Community";
 		};
-		94635A952C5BADEF00817E77 /* FirebaseInAppMessaging-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 94635A782C5BADD700817E77 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseInAppMessaging-Beta";
-		};
 		94635A972C5BADEF00817E77 /* FirebaseInstallations */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 94635A782C5BADD700817E77 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseInstallations;
-		};
-		94635A992C5BADEF00817E77 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 94635A782C5BADD700817E77 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
 		};
 		94635A9B2C5BADEF00817E77 /* FirebaseMLModelDownloader */ = {
 			isa = XCSwiftPackageProductDependency;
