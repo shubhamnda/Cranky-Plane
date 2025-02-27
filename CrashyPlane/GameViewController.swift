@@ -31,7 +31,7 @@ class GameViewController: UIViewController {
             
             addBannerViewToView(bannerView)
             
-            bannerView.adUnitID = "ca-app-pub-4131085170810437/1584949641"
+            bannerView.adUnitID = ""
             bannerView.rootViewController = self
             
             bannerView.load(GADRequest())}
