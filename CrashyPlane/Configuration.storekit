@@ -1,5 +1,5 @@
 {
-  "identifier" : "9F46552C",
+  "identifier" : "",
   "nonRenewingSubscriptions" : [
 
   ],
@@ -7,7 +7,7 @@
     {
       "displayPrice" : "9.99",
       "familyShareable" : false,
-      "internalID" : "12CE5BB2",
+      "internalID" : "",
       "localizations" : [
         {
           "description" : "No Ads with Premium Content for $10.00",
@@ -15,7 +15,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "co.shubhamnanda.premium",
+      "productID" : "",
       "referenceName" : "Ads-PremiumContent",
       "type" : "NonConsumable"
     }
