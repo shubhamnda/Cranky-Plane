@@ -18,7 +18,7 @@ class PaymentManager:NSObject ,SKProductsRequestDelegate,SKPaymentTransactionObs
 
     
     enum Product: String, CaseIterable {
-        case   nonAdsPremium = "co.shubhamnanda.premium"
+        case   nonAdsPremium = ""
     }
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         if let oProduct = response.products.first {
