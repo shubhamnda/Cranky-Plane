@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>282864055184-l22gu3vaedcul96pphktmte6qhh9h7tn.apps.googleusercontent.com</string>
+	<string></string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.282864055184-l22gu3vaedcul96pphktmte6qhh9h7tn</string>
+	<string></string>
 	<key>API_KEY</key>
-	<string>AIzaSyDDYeolfA_KdTRxeTcGo6C6b0hNLysw_SM</string>
+	<string></string>
 	<key>GCM_SENDER_ID</key>
-	<string>282864055184</string>
+	<string></string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>co.shubhamnanda.CrashyPlane2</string>
+	<string></string>
 	<key>PROJECT_ID</key>
-	<string>cranky-31b7a</string>
+	<string></string>
 	<key>STORAGE_BUCKET</key>
-	<string>cranky-31b7a.appspot.com</string>
+	<string></string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:282864055184:ios:8f0e2bc6eb60edd095f915</string>
+	<string></string>
 </dict>
 </plist>
