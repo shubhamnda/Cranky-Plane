@@ -55,6 +55,8 @@ Tap to navigate through obstacles and survive as long as possible.
 
 
 https://github.com/user-attachments/assets/0c7c6074-663d-4ee7-96bc-01e032b40d09
+## 📝 License
+This project is **open-source** and available under the **MIT License**.
 
 
 🚀 **Enjoy the game & beat the high score!**
